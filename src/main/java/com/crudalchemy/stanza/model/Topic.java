@@ -14,7 +14,7 @@ public class Topic {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     String subject;
-    
+
     //TODO: Consider if topicCreator property is required for later functionality
 
     // Topic timestamp will be drawn from initial post time (property of Post)
