@@ -3,6 +3,7 @@ package com.crudalchemy.stanza.controller;
 import com.crudalchemy.stanza.model.ApplicationUser;
 import com.crudalchemy.stanza.repository.ApplicationUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 
 @Controller
 public class ApplicationController {
@@ -27,24 +29,39 @@ public class ApplicationController {
     private HttpServletRequest httpServletRequest;
 
     @GetMapping("/")
-    public RedirectView getHomePage(Model model){
+    public RedirectView getHomePage(Model model) {
         return new RedirectView("/general");
     }
 
     // possibly rename in the future
     @GetMapping("/general")
-    public String getGeneralBoard(Model model){
+    public String getGeneralBoard(Principal principal, Model model) {
+        if(principal != null) {
+            // revisit - possibly change loggedInUser
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+            model.addAttribute("loggedInUser", loggedInUser);
+        }
         return "board.html";
     }
 
     @GetMapping("/general/{topicId}")
-    public String getTopicPage(@PathVariable long topicId, Model model){
+    public String getTopicPage(Principal principal, @PathVariable long topicId, Model model) {
+        if(principal != null) {
+            // revisit - possibly change loggedInUser
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+            model.addAttribute("loggedInUser", loggedInUser);
+        }
         return "topic.html";
     }
 
     @GetMapping("/create-account")
-    public String getCreateAccountPage(){
-       return "create-account.html";
+    public String getCreateAccountPage(Principal principal, Model model) {
+        if(principal != null) {
+            // revisit - possibly change loggedInUser
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+            model.addAttribute("loggedInUser", loggedInUser);
+        }
+        return "create-account.html";
     }
 
     //TODO: redirect to previous page from before account creation
@@ -59,19 +76,48 @@ public class ApplicationController {
         ApplicationUser newUser = new ApplicationUser(username, hashedPassword, firstName, lastName, bio);
 
         applicationUserRepository.save(newUser);
-        authWithHttpServletRequest(username, hashedPassword);
+        authWithHttpServletRequest(username, password);
 
         return new RedirectView("/");
-        }
+    }
 
-        public void authWithHttpServletRequest(String username, String hashedPassword) {
+    public void authWithHttpServletRequest(String username, String password) {
+        try {
+            httpServletRequest.login(username, password);
+        } catch (ServletException servletException) {
+            //TODO: revisit ServletException error message
+            System.out.println("Error logging in");
+            servletException.printStackTrace();
+        }
+    }
+
+    @GetMapping("/login")
+    public String getLoginPage(Principal principal, Model model) {
+        if(principal != null) {
+            // revisit - possibly change loggedInUser
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+            model.addAttribute("loggedInUser", loggedInUser);
+        }
+        return "login.html";
+    }
+
+    @PostMapping("/login")
+    public RedirectView loginToApp(String username, String password){
+        return new RedirectView("/");
+    }
+
+    @PostMapping("/logout")
+    public RedirectView logoutUser(Principal principal) {
+        if (principal != null) {
             try {
-                httpServletRequest.login(username, hashedPassword);
+                httpServletRequest.logout();
             } catch(ServletException servletException) {
-                //TODO: revisit ServletException error message
-                System.out.println("Error logging in");
+                System.out.println("Error logging out");
                 servletException.printStackTrace();
             }
         }
-
+        return new RedirectView("/");
     }
+
+}
+
