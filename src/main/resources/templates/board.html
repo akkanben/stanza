@@ -8,9 +8,13 @@
     <title>General</title>
 </head>
 <body>
-<header></header>
-<h1>General Thread Page</h1>
-<main></main>
+<header>
+    <div th:replace="/fragments/header :: ul"></div>
+</header>
+<main>
+    <h1>General Thread Page</h1>
+<!--    <h1 th:text="${loggedInUser.firstName + ' ' + loggedInUser.lastName}"></h1>-->
+</main>
 <footer></footer>
 </body>
 </html>

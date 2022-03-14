@@ -8,7 +8,9 @@
     <title>Create An Account</title>
 </head>
 <body>
-<header></header>
+<header>
+    <div th:replace="/fragments/header :: ul"></div>
+</header>
 <main>
     <h1>Enter New Account Details</h1>
     <form action="/create-account" method="post">

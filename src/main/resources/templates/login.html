@@ -8,7 +8,9 @@
     <title>Log in</title>
 </head>
 <body>
-<header></header>
+<header>
+    <div th:replace="/fragments/header :: ul"></div>
+</header>
 <main>
     <h1>Log in</h1>
     <form action="/login" method="post">
@@ -19,7 +21,7 @@
         <fieldset>
             <label for="password">Password</label>
             <input type="password" name="password">
-            <input type="submit" value="Create Account">
+            <input type="submit" value="Log In">
         </fieldset>
     </form>
 </main>

@@ -3,6 +3,7 @@ package com.crudalchemy.stanza.controller;
 import com.crudalchemy.stanza.model.ApplicationUser;
 import com.crudalchemy.stanza.repository.ApplicationUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,17 +39,28 @@ public class ApplicationController {
         if(principal != null) {
             // revisit - possibly change loggedInUser
             ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+            model.addAttribute("loggedInUser", loggedInUser);
         }
         return "board.html";
     }
 
     @GetMapping("/general/{topicId}")
-    public String getTopicPage(@PathVariable long topicId, Model model) {
+    public String getTopicPage(Principal principal, @PathVariable long topicId, Model model) {
+        if(principal != null) {
+            // revisit - possibly change loggedInUser
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+            model.addAttribute("loggedInUser", loggedInUser);
+        }
         return "topic.html";
     }
 
     @GetMapping("/create-account")
-    public String getCreateAccountPage() {
+    public String getCreateAccountPage(Principal principal, Model model) {
+        if(principal != null) {
+            // revisit - possibly change loggedInUser
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+            model.addAttribute("loggedInUser", loggedInUser);
+        }
         return "create-account.html";
     }
 
@@ -80,7 +92,12 @@ public class ApplicationController {
     }
 
     @GetMapping("/login")
-    public String getLoginPage() {
+    public String getLoginPage(Principal principal, Model model) {
+        if(principal != null) {
+            // revisit - possibly change loggedInUser
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+            model.addAttribute("loggedInUser", loggedInUser);
+        }
         return "login.html";
     }
 
@@ -88,5 +105,19 @@ public class ApplicationController {
     public RedirectView loginToApp(String username, String password){
         return new RedirectView("/");
     }
+
+    @PostMapping("/logout")
+    public RedirectView logoutUser(Principal principal) {
+        if (principal != null) {
+            try {
+                httpServletRequest.logout();
+            } catch(ServletException servletException) {
+                System.out.println("Error logging out");
+                servletException.printStackTrace();
+            }
+        }
+        return new RedirectView("/");
+    }
+
 }
 
