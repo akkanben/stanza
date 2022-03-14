@@ -13,6 +13,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 
 @Controller
 public class ApplicationController {
@@ -27,24 +28,28 @@ public class ApplicationController {
     private HttpServletRequest httpServletRequest;
 
     @GetMapping("/")
-    public RedirectView getHomePage(Model model){
+    public RedirectView getHomePage(Model model) {
         return new RedirectView("/general");
     }
 
     // possibly rename in the future
     @GetMapping("/general")
-    public String getGeneralBoard(Model model){
+    public String getGeneralBoard(Principal principal, Model model) {
+        if(principal != null) {
+            // revisit - possibly change loggedInUser
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+        }
         return "board.html";
     }
 
     @GetMapping("/general/{topicId}")
-    public String getTopicPage(@PathVariable long topicId, Model model){
+    public String getTopicPage(@PathVariable long topicId, Model model) {
         return "topic.html";
     }
 
     @GetMapping("/create-account")
-    public String getCreateAccountPage(){
-       return "create-account.html";
+    public String getCreateAccountPage() {
+        return "create-account.html";
     }
 
     //TODO: redirect to previous page from before account creation
@@ -59,19 +64,29 @@ public class ApplicationController {
         ApplicationUser newUser = new ApplicationUser(username, hashedPassword, firstName, lastName, bio);
 
         applicationUserRepository.save(newUser);
-        authWithHttpServletRequest(username, hashedPassword);
+        authWithHttpServletRequest(username, password);
 
         return new RedirectView("/");
-        }
-
-        public void authWithHttpServletRequest(String username, String hashedPassword) {
-            try {
-                httpServletRequest.login(username, hashedPassword);
-            } catch(ServletException servletException) {
-                //TODO: revisit ServletException error message
-                System.out.println("Error logging in");
-                servletException.printStackTrace();
-            }
-        }
-
     }
+
+    public void authWithHttpServletRequest(String username, String password) {
+        try {
+            httpServletRequest.login(username, password);
+        } catch (ServletException servletException) {
+            //TODO: revisit ServletException error message
+            System.out.println("Error logging in");
+            servletException.printStackTrace();
+        }
+    }
+
+    @GetMapping("/login")
+    public String getLoginPage() {
+        return "login.html";
+    }
+
+    @PostMapping("/login")
+    public RedirectView loginToApp(String username, String password){
+        return new RedirectView("/");
+    }
+}
+
