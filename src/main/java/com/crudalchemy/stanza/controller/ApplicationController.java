@@ -11,7 +11,7 @@ public class ApplicationController {
 
     @GetMapping("/")
     public RedirectView getHomePage(Model model){
-        return new RedirectView();
+        return new RedirectView("/general");
     }
 
     // possibly rename in the future
