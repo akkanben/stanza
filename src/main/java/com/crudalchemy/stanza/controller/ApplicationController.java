@@ -1,7 +1,11 @@
 package com.crudalchemy.stanza.controller;
 
 import com.crudalchemy.stanza.model.ApplicationUser;
+import com.crudalchemy.stanza.model.Post;
+import com.crudalchemy.stanza.model.Topic;
 import com.crudalchemy.stanza.repository.ApplicationUserRepository;
+import com.crudalchemy.stanza.repository.PostRepository;
+import com.crudalchemy.stanza.repository.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +19,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.Date;
 
 @Controller
 public class ApplicationController {
@@ -24,6 +29,12 @@ public class ApplicationController {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    TopicRepository topicRepository;
+
+    @Autowired
+    PostRepository postRepository;
 
     @Autowired
     private HttpServletRequest httpServletRequest;
@@ -117,6 +128,33 @@ public class ApplicationController {
             }
         }
         return new RedirectView("/");
+    }
+
+    @PostMapping("/create-topic")
+    public RedirectView addNewTopic(Principal principal, Model model, String subject, String body){
+        if(principal != null) {
+            // revisit - possibly change loggedInUser
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+            model.addAttribute("loggedInUser", loggedInUser);
+            Topic newTopic = new Topic(subject);
+            Date date = new Date();
+            Post newPost = new Post(body, loggedInUser);
+            newPost.setDate(date);
+//            postRepository.save(newPost);
+            newTopic.addNewPost(newPost);
+            topicRepository.save(newTopic);
+        }
+        return new RedirectView("/");
+    }
+
+    @GetMapping("/create-topic")
+    public String getNewTopicPage(Principal principal, Model model){
+        if(principal != null) {
+            // revisit - possibly change loggedInUser
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+            model.addAttribute("loggedInUser", loggedInUser);
+        }
+        return "new-topic.html";
     }
 
 }

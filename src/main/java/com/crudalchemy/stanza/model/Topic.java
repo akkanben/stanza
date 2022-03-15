@@ -1,11 +1,9 @@
 package com.crudalchemy.stanza.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Topic {
@@ -14,19 +12,21 @@ public class Topic {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     String subject;
+    @ManyToOne
+    ApplicationUser originalPoster;
 
     //TODO: Consider if topicCreator property is required for later functionality
 
     // Topic timestamp will be drawn from initial post time (property of Post)
-
-    ArrayList<Post> topicPostList;
+    @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
+    List<Post> topicPostList;
 
     public Topic() {
     }
 
-    public Topic(String subject, ArrayList<Post> topicPostList) {
+    public Topic(String subject) {
         this.subject = subject;
-        this.topicPostList = topicPostList;
+        topicPostList = new ArrayList<>();
     }
 
     public long getId() {
@@ -41,11 +41,23 @@ public class Topic {
         this.subject = subject;
     }
 
-    public ArrayList<Post> getTopicPostList() {
+    public List<Post> getTopicPostList() {
         return topicPostList;
     }
 
-    public void setTopicPostList(ArrayList<Post> topicPostList) {
+    public void setTopicPostList(List<Post> topicPostList) {
         this.topicPostList = topicPostList;
+    }
+
+    public void addNewPost(Post newPost){
+        topicPostList.add(newPost);
+    }
+
+    public ApplicationUser getOriginalPoster() {
+        return originalPoster;
+    }
+
+    public void setOriginalPoster(ApplicationUser originalPoster) {
+        this.originalPoster = originalPoster;
     }
 }

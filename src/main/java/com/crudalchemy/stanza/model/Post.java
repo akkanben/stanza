@@ -1,6 +1,8 @@
 package com.crudalchemy.stanza.model;
 
 import javax.persistence.*;
+import java.util.Date;
+
 
 @Entity
 public class Post {
@@ -8,14 +10,18 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
+    Date date;
 
     @Column(columnDefinition = "text")
     String body;
 
     //TODO: many-to-one relationship w/ user
 
-
+    @ManyToOne
     ApplicationUser postingUser;
+
+    @ManyToOne
+    Topic topic;
 
     public Post() {
     }
@@ -45,4 +51,11 @@ public class Post {
         this.postingUser = postingUser;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }
