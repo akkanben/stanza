@@ -15,8 +15,6 @@ public class Post {
     @Column(columnDefinition = "text")
     String body;
 
-    //TODO: many-to-one relationship w/ user
-
     @ManyToOne
     ApplicationUser postingUser;
 
@@ -26,9 +24,11 @@ public class Post {
     public Post() {
     }
 
-    public Post(String body, ApplicationUser postingUser) {
+    public Post(String body, ApplicationUser postingUser, Topic topic, Date date) {
         this.body = body;
         this.postingUser = postingUser;
+        this.topic = topic;
+        this.date = date;
     }
 
     public long getId() {
@@ -57,5 +57,13 @@ public class Post {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Topic getTopic() {
+        return topic;
+    }
+
+    public void setTopic(Topic topic) {
+        this.topic = topic;
     }
 }

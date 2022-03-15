@@ -136,12 +136,12 @@ public class ApplicationController {
             // revisit - possibly change loggedInUser
             ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
             model.addAttribute("loggedInUser", loggedInUser);
-            Topic newTopic = new Topic(subject);
+            Topic newTopic = new Topic(subject, loggedInUser);
             Date date = new Date();
-            Post newPost = new Post(body, loggedInUser);
-            newPost.setDate(date);
-//            postRepository.save(newPost);
+            Post newPost = new Post(body, loggedInUser, newTopic, date);
+            loggedInUser.addPostToUserPostList(newPost);
             newTopic.addNewPost(newPost);
+            loggedInUser.addTopicToUserTopicList(newTopic);
             topicRepository.save(newTopic);
         }
         return new RedirectView("/");

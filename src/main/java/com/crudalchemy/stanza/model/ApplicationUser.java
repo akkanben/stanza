@@ -22,11 +22,9 @@ public class ApplicationUser implements UserDetails {
     @Column(columnDefinition = "text")
     String bio;
 
-    //TODO: create Post model
-    @OneToMany(mappedBy = "postingUser")
+    @OneToMany(mappedBy = "postingUser", cascade = CascadeType.ALL)
     List<Post> userPostList;
 
-    //TODO:  create Topic Model
     @OneToMany(mappedBy = "originalPoster", cascade = CascadeType.ALL)
     List<Topic> userThreadList;
 
@@ -131,5 +129,13 @@ public class ApplicationUser implements UserDetails {
 
     public void setUserThreadList(List<Topic> userThreadList) {
         this.userThreadList = userThreadList;
+    }
+
+    public void addPostToUserPostList(Post post) {
+        userPostList.add(post);
+    }
+
+    public void addTopicToUserTopicList(Topic topic) {
+        userThreadList.add(topic);
     }
 }

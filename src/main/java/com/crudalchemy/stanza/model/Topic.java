@@ -24,8 +24,9 @@ public class Topic {
     public Topic() {
     }
 
-    public Topic(String subject) {
+    public Topic(String subject, ApplicationUser originalPoster) {
         this.subject = subject;
+        this.originalPoster = originalPoster;
         topicPostList = new ArrayList<>();
     }
 
