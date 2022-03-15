@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class ApplicationUser implements UserDetails {
@@ -21,11 +22,11 @@ public class ApplicationUser implements UserDetails {
     @Column(columnDefinition = "text")
     String bio;
 
-    //TODO: create Post model
-    ArrayList<Post> userPostList;
+    @OneToMany(mappedBy = "postingUser", cascade = CascadeType.ALL)
+    List<Post> userPostList;
 
-    //TODO:  create Topic Model
-    ArrayList<Topic> userThreadList;
+    @OneToMany(mappedBy = "originalPoster", cascade = CascadeType.ALL)
+    List<Topic> userThreadList;
 
 
     public ApplicationUser() {
@@ -38,6 +39,8 @@ public class ApplicationUser implements UserDetails {
         this.firstName = firstName;
         this.lastName = lastName;
         this.bio = bio;
+        userPostList = new ArrayList<>();
+        userThreadList = new ArrayList<>();
     }
 
 
@@ -112,19 +115,27 @@ public class ApplicationUser implements UserDetails {
         this.bio = bio;
     }
 
-    public ArrayList<Post> getUserPostList() {
+    public List<Post> getUserPostList() {
         return userPostList;
     }
 
-    public void setUserPostList(ArrayList<Post> userPostList) {
+    public void setUserPostList(List<Post> userPostList) {
         this.userPostList = userPostList;
     }
 
-    public ArrayList<Topic> getUserThreadList() {
+    public List<Topic> getUserThreadList() {
         return userThreadList;
     }
 
-    public void setUserThreadList(ArrayList<Topic> userThreadList) {
+    public void setUserThreadList(List<Topic> userThreadList) {
         this.userThreadList = userThreadList;
+    }
+
+    public void addPostToUserPostList(Post post) {
+        userPostList.add(post);
+    }
+
+    public void addTopicToUserTopicList(Topic topic) {
+        userThreadList.add(topic);
     }
 }
