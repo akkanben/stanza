@@ -12,10 +12,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
@@ -175,6 +177,44 @@ public class ApplicationController {
         return new RedirectView("general/" + topicId);
     }
 
+    @GetMapping("/profile/{userID}")
+    public String getUserProfilePage(@PathVariable long userID, Principal p, Model m) {
+        ApplicationUser currentProfileUser = applicationUserRepository.getById(userID);
+        if (p != null) {
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(p.getName());
+            m.addAttribute("loggedInUser", loggedInUser);
+        }
+        try {
+            currentProfileUser.getFirstName();
+        } catch (EntityNotFoundException entityNotFoundException) {
+            m.addAttribute("errorMessage", "Could not find a user for that id!");
+            return "profile.html";
+        }
+        m.addAttribute("currentProfileUser", currentProfileUser);
+        return "profile.html";
+    }
+
+    @GetMapping("/profile")
+    public String getUserProfilePage(Principal p, Model m) {
+        if (p != null) {
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(p.getName());
+            m.addAttribute("loggedInUser", loggedInUser);
+        }
+        return "my-profile.html";
+    }
+
+    @PostMapping("/update-account")
+    public RedirectView editUserAccount(Principal p, Model m, String firstName, String lastName, String bio) {
+        if (p != null) {
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(p.getName());
+            if (firstName != "") loggedInUser.setFirstName(firstName);
+            if (lastName != "") loggedInUser.setLastName(lastName);
+            if (bio != "") loggedInUser.setBio(bio);
+            applicationUserRepository.save(loggedInUser);
+            m.addAttribute("loggedInUser", loggedInUser);
+        }
+        return new RedirectView("/profile");
+    }
 
 
 }

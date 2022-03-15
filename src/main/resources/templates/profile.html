@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Profile</title>
+</head>
+<body>
+<header>
+    <div th:replace="/fragments/header :: ul"></div>
+</header>
+<main>
+    <div class="user-details-container">
+        <ul th:if="${currentProfileUser != null}">
+            <div class="label-data-pairs-container">
+                <li class="profile-label">First Name</li>
+                <li th:text="${currentProfileUser.firstName}"></li>
+            </div>
+            <div class="label-data-pairs-container">
+                <li class="profile-label">Last Name</li>
+                <li th:text="${currentProfileUser.lastName}"></li>
+            </div>
+            <div class="label-data-pairs-container">
+                <li class="profile-label">Username</li>
+                <li th:text="${currentProfileUser.username}"></li>
+            </div>
+            <div class="label-data-pairs-container">
+                <li class="profile-label">Bio</li>
+                <li th:text="${currentProfileUser.bio}"></li>
+            </div>
+        </ul>
+        <div th:unless="${currentProfileUser != null}">
+            <h1 th:text="${errorMessage}"></h1>
+            <a href="/">Return Home</a>
+        </div>
+    </div>
+</main>
+<footer></footer>
+</body>
+</html>
