@@ -17,7 +17,13 @@
 <!--    <h1 th:text="${loggedInUser.firstName + ' ' + loggedInUser.lastName}"></h1>-->
     <ol>
         <li th:each="topic: ${topicList}">
-            <a th:href="@{/general/{topicSource}(topicSource=${topic.id})}" th:text="${topic.subject} + ' ' +  ${topic.originalPoster.username} + ' ' + ${topic.mostRecentPostDate}"></a>
+            <a th:href="@{/general/{topicSource}(topicSource=${topic.id})}" >
+                <div class="topic-container">
+                    <span th:text="${topic.subject}"></span>
+                    <a th:href="'/profile/' + ${topic.originalPoster.id}" th:text="${topic.originalPoster.username}"></a>
+                    <span th:text="${topic.mostRecentPostDate}"></span>
+                </div>
+            </a>
         </li>
     </ol>
 </main>
