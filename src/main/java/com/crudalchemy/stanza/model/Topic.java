@@ -3,6 +3,7 @@ package com.crudalchemy.stanza.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -12,6 +13,7 @@ public class Topic {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     String subject;
+    Date mostRecentPostDate;
     @ManyToOne
     ApplicationUser originalPoster;
 
@@ -51,6 +53,7 @@ public class Topic {
     }
 
     public void addNewPost(Post newPost){
+        mostRecentPostDate = newPost.getDate();
         topicPostList.add(newPost);
     }
 
@@ -60,5 +63,13 @@ public class Topic {
 
     public void setOriginalPoster(ApplicationUser originalPoster) {
         this.originalPoster = originalPoster;
+    }
+
+    public Date getMostRecentPostDate() {
+        return mostRecentPostDate;
+    }
+
+    public void setMostRecentPostDate(Date mostRecentPostDate) {
+        this.mostRecentPostDate = mostRecentPostDate;
     }
 }

@@ -19,9 +19,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class ApplicationController {
@@ -54,7 +52,7 @@ public class ApplicationController {
             ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
             model.addAttribute("loggedInUser", loggedInUser);
         }
-        List<Topic> topicList = topicRepository.findAll();
+        List<Topic> topicList = topicRepository.findByOrderByMostRecentPostDateDesc();
         model.addAttribute("topicList", topicList);
         return "board.html";
     }
