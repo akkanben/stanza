@@ -53,7 +53,6 @@ public class ApplicationController {
             model.addAttribute("loggedInUser", loggedInUser);
         }
         List<Topic> topicList = topicRepository.findByOrderByMostRecentPostDateDesc();
-        //topicList.sort(Comparator.comparing(Topic::getMostRecentPostDate));
         model.addAttribute("topicList", topicList);
         return "board.html";
     }
