@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Profile</title>
+</head>
+<body>
+
+<header>
+    <div th:replace="/fragments/header :: ul"></div>
+</header>
+<main>
+    <div th:if="${loggedInUser != null}" class="user-details-container">
+        <h1>Edit Account Details</h1>
+        <form action="/update-account" method="post">
+            <fieldset>
+                <label for="firstName">Edit First Name</label>
+                <input type="text" name="firstName" th:placeholder="${loggedInUser.firstName}">
+            </fieldset>
+            <fieldset>
+                <label for="lastName">Edit Last Name</label>
+                <input type="text" name="lastName" th:placeholder="${loggedInUser.lastName}">
+            </fieldset>
+            <fieldset>
+                <label for="bio">Edit User Bio</label>
+                <input type="text" name="bio" th:placeholder="${loggedInUser.bio}">
+                <input type="submit" value="Update Profile">
+            </fieldset>
+        </form>
+    </div>
+</main>
+<footer></footer>
+
+</body>
+</html>
