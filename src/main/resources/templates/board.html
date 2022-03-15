@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -15,6 +15,11 @@
     <h1>General Thread Page</h1>
     <a href="/create-topic">New Topic</a>
 <!--    <h1 th:text="${loggedInUser.firstName + ' ' + loggedInUser.lastName}"></h1>-->
+    <ol>
+        <li th:each="topic: ${topicList}">
+            <a th:href="@{/general/{topicSource}(topicSource=${topic.id})}" th:text="${topic.id} + ${topic.subject} + ${topic.originalPoster.username}"></a>
+        </li>
+    </ol>
 </main>
 <footer></footer>
 </body>

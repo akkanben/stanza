@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -11,8 +11,25 @@
 <header>
     <div th:replace="/fragments/header :: ul"></div>
 </header>
-<h1>Topic Page</h1>
+<h1 th:text="${currentTopic.subject}"></h1>
 <main></main>
+<ol>
+<li th:each="post: ${currentTopic.topicPostList}">
+<p th:text="'Posted: ' + ${post.date}"></p>
+    <h3 th:text="${post.postingUser.username}"></h3>
+    <p th:text="${post.body}"></p>
+</li>
+</ol>
+<form action="/add-post" method="post">
+    <fieldset>
+        <label for="body">Add your thoughts!</label>
+        <!--TODO: Optional--add minimum character count -->
+        <textarea name="body" required></textarea>
+        <input type="hidden" name="topicId" th:value="${currentTopic.getId()}">
+        <input type="submit" value="Submit Post">
+    </fieldset>
+</form>
+
 <footer></footer>
 </body>
 </html>

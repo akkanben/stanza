@@ -19,7 +19,9 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class ApplicationController {
@@ -52,6 +54,8 @@ public class ApplicationController {
             ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
             model.addAttribute("loggedInUser", loggedInUser);
         }
+        List<Topic> topicList = topicRepository.findAll();
+        model.addAttribute("topicList", topicList);
         return "board.html";
     }
 
@@ -62,6 +66,8 @@ public class ApplicationController {
             ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
             model.addAttribute("loggedInUser", loggedInUser);
         }
+        Topic currentTopic = topicRepository.getById(topicId);
+        model.addAttribute("currentTopic", currentTopic);
         return "topic.html";
     }
 
@@ -156,6 +162,22 @@ public class ApplicationController {
         }
         return "new-topic.html";
     }
+
+    @PostMapping("/add-post")
+    public RedirectView addNewPost(Principal principal, Model model, String body, long topicId) {
+        if(principal != null) {
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+            model.addAttribute("loggedInUser", loggedInUser);
+            Topic topic = topicRepository.getById(topicId);
+            Post addedPost = new Post(body, loggedInUser, topic, new Date());
+            topic.addNewPost(addedPost);
+            topicRepository.save(topic);
+
+        }
+        return new RedirectView("general/" + topicId);
+    }
+
+
 
 }
 
