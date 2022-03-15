@@ -31,9 +31,10 @@
                 <li th:text="${currentProfileUser.bio}"></li>
             </div>
         </ul>
-        <form>
-
-        </form>
+        <div th:unless="${currentProfileUser != null}">
+            <h1 th:text="${errorMessage}"></h1>
+            <a href="/">Return Home</a>
+        </div>
     </div>
 </main>
 <footer></footer>

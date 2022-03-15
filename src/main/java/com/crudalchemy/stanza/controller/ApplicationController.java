@@ -182,14 +182,13 @@ public class ApplicationController {
         ApplicationUser currentProfileUser = applicationUserRepository.getById(userID);
         if (p != null) {
             ApplicationUser loggedInUser = applicationUserRepository.findByUsername(p.getName());
-            if (loggedInUser != null)
-                m.addAttribute("loggedInUser", loggedInUser);
+            m.addAttribute("loggedInUser", loggedInUser);
         }
         try {
             currentProfileUser.getFirstName();
         } catch (EntityNotFoundException entityNotFoundException) {
             m.addAttribute("errorMessage", "Could not find a user for that id!");
-            return "board.html";
+            return "profile.html";
         }
         m.addAttribute("currentProfileUser", currentProfileUser);
         return "profile.html";
@@ -213,7 +212,6 @@ public class ApplicationController {
             if (bio != "") loggedInUser.setBio(bio);
             applicationUserRepository.save(loggedInUser);
             m.addAttribute("loggedInUser", loggedInUser);
-
         }
         return new RedirectView("/profile");
     }
