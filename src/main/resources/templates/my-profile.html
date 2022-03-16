@@ -10,7 +10,7 @@
 <body>
 
 <header>
-    <div th:replace="/fragments/header :: ul"></div>
+    <div th:replace="fragments/header :: ul"></div>
 </header>
 <main>
     <div th:if="${loggedInUser != null}" class="user-details-container">
