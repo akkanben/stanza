@@ -17,6 +17,11 @@
 <main>
     <h1>General Thread Page</h1>
     <a href="/create-topic" class="create-new-topic-link">New Topic</a>
+    <div class="topic-list-header">
+        <span class="title-heading">Topic Title</span>
+        <span class="author-heading">Author</span>
+        <span class="last-post-date-heading">Last Post Date</span>
+    </div>
     <ol th:if="${topicList != null}" class="topic-list-container">
         <li th:each="topic: ${topicList}" class="single-topic-container">
             <a th:href="@{/general/{topicSource}(topicSource=${topic.id})}" class="topic-link">
