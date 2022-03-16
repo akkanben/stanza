@@ -1,0 +1,31 @@
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 400px;
+    max-width: 25%;
+    text-align: right;
+    padding: 1em;
+    background-color: #bbbbbb;
+    border-radius: 3px;
+    margin-top: 2em;
+    box-shadow:
+            1.4px 1.4px 1.4px rgba(0, 0, 0, 0.02),
+            3.3px 3.3px 3.3px rgba(0, 0, 0, 0.028),
+            6.3px 6.3px 6.3px rgba(0, 0, 0, 0.035),
+            11.2px 11.2px 11.2px rgba(0, 0, 0, 0.042),
+            20.9px 20.9px 20.9px rgba(0, 0, 0, 0.05),
+            50px 50px 50px rgba(0, 0, 0, 0.07)
+;}
+
+fieldset {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    justify-content: space-between;
+    padding: 0.5em 0;
+}
+
+fieldset:last-child {
+    justify-content: right;
+}

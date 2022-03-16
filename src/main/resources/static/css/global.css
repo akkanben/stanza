@@ -70,7 +70,7 @@ label {
     padding: 1em 0 0.5em 0;
 }
 
-input {
+input, textarea{
     background-color: #f3f3f3;
 }
 
@@ -95,7 +95,7 @@ header {
 }
 
 header a:hover {
-    color: #bdbdbd;
+    color: #7c7c7c;
 }
 
 header ul {
@@ -120,7 +120,11 @@ header li {
     flex-direction: row;
     margin-right: 2.5%;
     text-align: right;
-    justify-content: space-between;
+    justify-content: right;
+}
+
+.right-navigation li:first-child {
+    padding-right: 2em;
 }
 
 /* F O O T E R */
