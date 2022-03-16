@@ -1,9 +1,13 @@
 package com.crudalchemy.stanza.model;
 
+import com.sun.istack.NotNull;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -14,9 +18,17 @@ public class ApplicationUser implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
+
+    @NotNull
+    @Size(min=3, max=12)
     String username;
+
+    @NotNull
+    @Size(min=8, max=255)
     String password;
+
     String firstName;
+
     String lastName;
 
     @Column(columnDefinition = "text")
