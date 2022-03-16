@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -16,25 +16,26 @@
     <form action="/create-account" method="post">
         <fieldset>
             <label for="username">Username</label>
-            <input type="text" name="username">
+            <input type="text" name="username" placeholder="3-12 Characters">
         </fieldset>
         <fieldset>
             <label for="password">Password</label>
-            <input type="password" name="password">
+            <input type="password" name="password" placeholder="At least 8 Characters">
         </fieldset>
         <fieldset>
             <label for="firstName">First Name</label>
-            <input type="text" name="firstName">
+            <input type="text" name="firstName" placeholder="(Optional)">
         </fieldset>
         <fieldset>
             <label for="lastName">Last Name</label>
-            <input type="text" name="lastName">
+            <input type="text" name="lastName" placeholder="(Optional)">
         </fieldset>
         <fieldset>
             <label for="bio">User Bio</label>
-            <input type="text" name="bio">
+            <input type="textarea" name="bio" placeholder="(Optional)">
             <input type="submit" value="Create Account">
         </fieldset>
+
 
     </form>
 </main>
