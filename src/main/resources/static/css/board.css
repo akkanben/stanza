@@ -1,0 +1,82 @@
+.single-topic-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #e8e7e7;
+    border: 1px solid #cbcbcb;
+    margin: .2em 0;
+    box-shadow:
+            0.4px 0.3px 0.7px -14px rgba(0, 0, 0, 0.037),
+            1px 0.8px 1.8px -14px rgba(0, 0, 0, 0.053),
+            1.9px 1.5px 3.4px -14px rgba(0, 0, 0, 0.065),
+            3.4px 2.7px 6px -14px rgba(0, 0, 0, 0.077),
+            6.3px 5px 11.3px -14px rgba(0, 0, 0, 0.093),
+            15px 12px 27px -14px rgba(0, 0, 0, 0.13)
+;
+}
+
+.single-topic-container:nth-child(odd) {
+    background-color: rgba(215, 215, 215, 0.85);
+}
+
+.single-topic-container:hover {
+    background-color: rgba(231, 231, 231, 0.85);
+}
+
+.topic-list-container {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    background-color: #c9c9c9;
+    padding: 0.5em;
+}
+
+.topic-link {
+    width: 70%;
+    text-align: left;
+    padding: .5em;
+}
+
+.topic-author-link {
+    width: 10%;
+    text-align: right;
+    padding: .5em;
+}
+
+.topic-last-post-date {
+    width: 20%;
+    text-align: right;
+    padding: .5em;
+}
+
+.create-new-topic-link {
+    align-self: baseline;
+    margin-left: 2.5%;
+}
+.topic-list-header {
+    background-color: #b2b2b2;
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    padding: 0.5em;
+    margin-top: 2em;
+}
+
+.title-heading {
+    width: 70%;
+    text-align: left;
+    padding: .5em;
+}
+.author-heading {
+    width: 10%;
+    text-align: right;
+    padding: .5em;
+
+}
+.last-post-date-heading {
+    width: 20%;
+    text-align: right;
+    padding: .5em;
+
+}

@@ -5,6 +5,9 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/board.css">
     <title>General</title>
 </head>
 <body>
@@ -13,20 +16,25 @@
 </header>
 <main>
     <h1>General Thread Page</h1>
-    <a href="/create-topic">New Topic</a>
-<!--    <h1 th:text="${loggedInUser.firstName + ' ' + loggedInUser.lastName}"></h1>-->
-    <ol th:if="${topicList != null}">
-        <li th:each="topic: ${topicList}">
-            <a th:href="@{/general/{topicSource}(topicSource=${topic.id})}" >
-                <div class="topic-container">
-                    <span th:text="${topic.subject}"></span>
-                    <a th:href="'/profile/' + ${topic.originalPoster.id}" th:text="${topic.originalPoster.username}"></a>
-                    <span th:text="${topic.mostRecentPostDate}"></span>
-                </div>
+    <a href="/create-topic" class="create-new-topic-link">New Topic</a>
+    <div class="topic-list-header">
+        <span class="title-heading">Topic Title</span>
+        <span class="author-heading">Author</span>
+        <span class="last-post-date-heading">Last Post Date</span>
+    </div>
+    <ol th:if="${topicList != null}" class="topic-list-container">
+        <li th:each="topic: ${topicList}" class="single-topic-container">
+            <a th:href="@{/general/{topicSource}(topicSource=${topic.id})}" class="topic-link">
+                <span th:text="${topic.subject}"></span>
             </a>
+            <a th:href="'/profile/' + ${topic.originalPoster.id}" th:text="${topic.originalPoster.username}"
+               class="topic-author-link"></a>
+            <span th:text="${topic.mostRecentPostDate}" class="topic-last-post-date"></span>
         </li>
     </ol>
 </main>
-<footer></footer>
+<footer>
+    <div th:replace="fragments/footer :: ul"></div>
+</footer>
 </body>
 </html>

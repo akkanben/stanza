@@ -9,11 +9,15 @@
 <body>
 
 <ul>
-    <li><a href="/">Home</a></li>
-    <li th:if="${loggedInUser == null}"><a href="/login">Log In</a></li>
-    <li th:unless="${loggedInUser == null}"><a href="/logout">Log Out</a></li>
-    <li th:if="${loggedInUser == null}"><a href="/create-account">Sign Up</a></li>
-    <li th:unless="${loggedInUser == null}"><a href="/profile">My Profile</a></li>
+    <div class="home-link-container">
+        <li><a href="/">Home</a></li>
+    </div>
+    <div class="right-navigation">
+        <li th:if="${loggedInUser == null}"><a href="/login">Log In</a></li>
+        <li th:unless="${loggedInUser == null}"><a href="/logout">Log Out</a></li>
+        <li th:if="${loggedInUser == null}"><a href="/create-account">Sign Up</a></li>
+        <li th:unless="${loggedInUser == null}"><a href="/profile">My Profile</a></li>
+    </div>
 </ul>
 
 
