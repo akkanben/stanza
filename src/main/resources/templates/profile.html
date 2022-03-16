@@ -15,8 +15,14 @@
     <div th:replace="fragments/header :: ul"></div>
 </header>
 <main>
+    <div th:if="${currentProfileUser != null}" >
+        <h1 th:text="${currentProfileUser.username + '''s Profile'}"></h1>
+    </div>
     <div class="user-details-container">
-        <ul th:if="${currentProfileUser != null}">
+        <div class="avatar-container">
+            <img src="https://placekitten.com/g/100/100" alt="avatar"/>
+        </div>
+        <ul th:if="${currentProfileUser != null}" class="profile-details-container">
             <div class="label-data-pairs-container">
                 <li class="profile-label">First Name</li>
                 <li th:text="${currentProfileUser.firstName}"></li>
@@ -39,6 +45,19 @@
             <a href="/">Return Home</a>
         </div>
     </div>
+
+    <h2 class="recent-header">Most Recent Posts</h2>
+    <ol th:if="${lastFivePostsList.size() > 0}" class="recent-posts-container">
+        <li th:each="post : ${lastFivePostsList.stream().limit(5).toList()}" class="single-post-container">
+            <a th:href="@{/general/{topicSource}(topicSource=${post.topic.id})}" class="profile-topic-link">
+                <span th:text="${post.topic.subject}"></span>
+            </a>
+            <span th:text="${post.body.substring(0, post.body.length() > 40 ? 40 : post.body.length())} + '...'" class="profile-body-summary"></span>
+            <span th:text="${post.date}" class="profile-post-date"></span>
+        </li>
+    </ol>
+    <ol th:unless="${lastFivePostsList.size() > 0}">No Recent Posts :(</ol>
+
 </main>
 <footer>
     <div th:replace="fragments/footer :: ul"></div>

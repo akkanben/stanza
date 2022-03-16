@@ -23,6 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.*;
 
+import static java.util.Comparator.reverseOrder;
+
 @Controller
 public class ApplicationController {
 
@@ -191,6 +193,10 @@ public class ApplicationController {
             return "profile.html";
         }
         m.addAttribute("currentProfileUser", currentProfileUser);
+        List<Post> lastFivePostsList = postRepository.findAllByPostingUser(currentProfileUser).stream().sorted((a, b) -> {
+            return b.getDate().compareTo(a.getDate());
+        }).toList();
+        m.addAttribute("lastFivePostsList", lastFivePostsList);
         return "profile.html";
     }
 

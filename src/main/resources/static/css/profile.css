@@ -1,0 +1,98 @@
+.user-details-container {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    background-color: #c9c9c9;
+    padding: 1em;
+    text-align: left;
+    margin-top: 1em;
+    box-shadow:
+            1.4px 1px 0.6px -29px rgba(0, 0, 0, 0.02),
+            2.7px 2px 1.4px -29px rgba(0, 0, 0, 0.028),
+            4.1px 3.1px 2.6px -29px rgba(0, 0, 0, 0.035),
+            6.5px 4.9px 4.7px -29px rgba(0, 0, 0, 0.042),
+            12.3px 9.3px 8.8px -29px rgba(0, 0, 0, 0.05),
+            37px 28px 21px -29px rgba(0, 0, 0, 0.07)
+;
+}
+
+.profile-details-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.label-data-pairs-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+.label-data-pairs-container:nth-child(odd) {
+    background-color: #bdbdbd;
+}
+
+.label-data-pairs-container li:first-child {
+   width: 20%;
+}
+
+.label-data-pairs-container li:last-child {
+    width: 80%;
+}
+
+.profile-label {
+    font-weight: bold;
+    padding-right: 1em;
+}
+
+.avatar-container {
+    padding-right: 1em;
+}
+
+.recent-posts-container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    background-color: #c9c9c9;
+    padding: 1em;
+    text-align: left;
+    margin-top: 1em;
+    box-shadow:
+            1.4px 1px 0.6px -29px rgba(0, 0, 0, 0.02),
+            2.7px 2px 1.4px -29px rgba(0, 0, 0, 0.028),
+            4.1px 3.1px 2.6px -29px rgba(0, 0, 0, 0.035),
+            6.5px 4.9px 4.7px -29px rgba(0, 0, 0, 0.042),
+            12.3px 9.3px 8.8px -29px rgba(0, 0, 0, 0.05),
+            37px 28px 21px -29px rgba(0, 0, 0, 0.07)
+;
+}
+
+.single-post-container {
+    display: flex;
+    flex-direction: row;
+    background-color: #e8e7e7;
+    border: 1px solid #cbcbcb;
+    margin: .2em 0;
+    line-height: 1.25em;
+    padding: 1em;
+}
+
+.recent-header {
+    font-size: large;
+    margin-top: 1em;
+}
+
+.profile-topic-link {
+   width: 20%;
+}
+
+.profile-body-summary {
+    width: 80%;
+
+}
+
+.profile-post-date {
+    width: 20%;
+
+}
