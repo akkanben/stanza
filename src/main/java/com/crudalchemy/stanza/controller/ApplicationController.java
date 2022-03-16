@@ -174,7 +174,7 @@ public class ApplicationController {
             topicRepository.save(topic);
 
         }
-        return new RedirectView("general/" + topicId);
+        return new RedirectView("general/" + topicId + "#goto-bottom");
     }
 
     @GetMapping("/profile/{userID}")

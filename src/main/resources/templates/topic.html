@@ -14,25 +14,52 @@
 <header>
     <div th:replace="fragments/header :: ul"></div>
 </header>
-<h1 th:text="${currentTopic.subject}"></h1>
-<a href="/general">Back to General</a>
-<main></main>
-<ol>
-    <li th:each="post: ${currentTopic.topicPostList}">
-        <p th:text="'Posted: ' + ${post.date}"></p>
-        <a th:href="'/profile/' + ${post.postingUser.id}"><h3 th:text="${post.postingUser.username}"></h3></a>
-        <p th:text="${post.body}"></p>
-    </li>
-</ol>
-<form action="/add-post" method="post">
-    <fieldset>
-        <label for="body">Add your thoughts!</label>
-        <!--TODO: Optional--add minimum character count -->
-        <textarea name="body" required></textarea>
-        <input type="hidden" name="topicId" th:value="${currentTopic.getId()}">
-        <input type="submit" value="Submit Post">
-    </fieldset>
-</form>
+
+<main>
+    <h1 th:text="${currentTopic.subject}"></h1>
+    <a href="/general" class="return-to-board-link">Back to General</a>
+    <div class="post-list-container">
+        <ol>
+            <li th:each="post: ${currentTopic.topicPostList}" class="single-post-container">
+                <div class="author-container">
+                    <img src="https://placekitten.com/g/100/100" alt="avatar"/>
+                    <a th:href="'/profile/' + ${post.postingUser.id}"><h3 th:text="${post.postingUser.username}"></h3>
+                    </a>
+                </div>
+                <div class="single-post-message-container">
+                    <h2 th:text="'Re: ' + ${currentTopic.subject}"></h2>
+                    <div class="single-post-details">
+                        <a th:href="'/profile/' + ${post.postingUser.id}"><h3
+                                th:text="${post.postingUser.username}"></h3>
+                        </a>
+                        <p th:text="'Posted: ' + ${post.date}"></p>
+                    </div>
+                    <div class="single-post-body"
+                    <p th:text="${post.body}"></p>
+                </div>
+            </li>
+        </ol>
+        <form th:if="${loggedInUser != null}" action="/add-post" method="post" class="add-new-post-container" id="goto-bottom">
+            <div class="add-thoughts-container">
+                <h2>Add your thoughts!</h2>
+            </div>
+            <fieldset>
+                <!--TODO: Optional--add minimum character count -->
+                <div class="author-container">
+                    <img src="https://placekitten.com/g/100/100" alt="avatar"/>
+                    <a th:href="'/profile/' + ${loggedInUser.id}"><h3 th:text="${loggedInUser.username}"></h3></a>
+                </div>
+                <div class="message-submit-container">
+                    <textarea name="body" required></textarea>
+                    <input type="hidden" name="topicId" th:value="${currentTopic.getId()}">
+                    <div class="button-container">
+                        <input type="submit" value="Submit Post" class="button submit-post-button">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</main>
 
 <footer>
     <div th:replace="fragments/footer :: ul"></div>

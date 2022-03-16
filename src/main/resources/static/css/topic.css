@@ -1,0 +1,106 @@
+.return-to-board-link{
+    align-self: baseline;
+    margin-left: 2.5%;
+}
+
+.post-list-container {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    background-color: #c9c9c9;
+    padding: 0.5em;
+    margin-top: 2em;
+    margin-bottom: 3em;
+
+}
+
+.post-list-container ol {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: left;
+}
+
+.single-post-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: #e8e7e7;
+    border: 1px solid #cbcbcb;
+    margin: .2em 0;
+    line-height: 1.25em;
+}
+
+.add-new-post-container {
+    width: 100%;
+    background-color: #b2b2b2;
+    border: 1px solid #cbcbcb;
+    margin: .2em 0;
+    box-shadow: 0.4px 0.3px 0.7px -14px rgba(0, 0, 0, 0.037),
+    1px 0.8px 1.8px -14px rgba(0, 0, 0, 0.053),
+    1.9px 1.5px 3.4px -14px rgba(0, 0, 0, 0.065),
+    3.4px 2.7px 6px -14px rgba(0, 0, 0, 0.077),
+    6.3px 5px 11.3px -14px rgba(0, 0, 0, 0.093),
+    15px 12px 27px -14px rgba(0, 0, 0, 0.13);
+}
+
+.add-new-post-container fieldset {
+    display: flex;
+}
+
+.add-thoughts-container {
+    display: flex;
+    justify-content: center;
+    background-color: #b2b2b2;
+}
+
+.add-thoughts-container h2 {
+    padding-top: 1em;
+}
+.message-submit-container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 1em;
+}
+
+.message-submit-container textarea {
+    min-height: 10em;
+}
+
+.single-post-details {
+    display: flex;
+    flex-direction: row;
+}
+
+.author-container {
+   width: 10%;
+    padding: 1em;
+}
+
+.author-container img {
+    padding-top: .5em;
+}
+
+.single-post-message-container {
+    width: 90%;
+    padding: 1em;
+}
+
+.single-post-message-container h2 {
+    font-weight: bold;
+    font-size: large;
+}
+
+.single-post-body {
+    margin-top: 1em;
+}
+.button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+.button-container input {
+    max-width: 50%;
+}
