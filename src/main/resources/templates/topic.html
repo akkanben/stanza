@@ -5,6 +5,9 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/topic.css">
     <title>Topic</title>
 </head>
 <body>
@@ -15,11 +18,11 @@
 <a href="/general">Back to General</a>
 <main></main>
 <ol>
-<li th:each="post: ${currentTopic.topicPostList}">
-<p th:text="'Posted: ' + ${post.date}"></p>
-    <a th:href="'/profile/' + ${post.postingUser.id}"><h3 th:text="${post.postingUser.username}"></h3></a>
-    <p th:text="${post.body}"></p>
-</li>
+    <li th:each="post: ${currentTopic.topicPostList}">
+        <p th:text="'Posted: ' + ${post.date}"></p>
+        <a th:href="'/profile/' + ${post.postingUser.id}"><h3 th:text="${post.postingUser.username}"></h3></a>
+        <p th:text="${post.body}"></p>
+    </li>
 </ol>
 <form action="/add-post" method="post">
     <fieldset>
@@ -31,6 +34,8 @@
     </fieldset>
 </form>
 
-<footer></footer>
+<footer>
+    <div th:replace="fragments/footer :: ul"></div>
+</footer>
 </body>
 </html>

@@ -5,12 +5,22 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/error.css">
     <title>Borked!</title>
 </head>
 <body>
-<h1>Not Working As Intended</h1>
-<h2 th:text="${'At ' + timestamp + '-- ' +'Error ' + status + ':' + error + '. ' + message}"></h2>
-
-<a href="/general">Head back to the General board</a>
+<header>
+    <div th:replace="fragments/header :: ul"></div>
+</header>
+<main>
+    <h1>Not Working As Intended</h1>
+    <h2 th:text="${'At ' + timestamp + '-- ' +'Error ' + status + ':' + error + '. ' + message}"></h2>
+    <a href="/general">Head back to the General board</a>
+</main>
+<footer>
+    <div th:replace="fragments/footer :: ul"></div>
+</footer>
 </body>
 </html>
