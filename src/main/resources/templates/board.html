@@ -9,13 +9,13 @@
 </head>
 <body>
 <header>
-    <div th:replace="/fragments/header :: ul"></div>
+    <div th:replace="fragments/header :: ul"></div>
 </header>
 <main>
     <h1>General Thread Page</h1>
     <a href="/create-topic">New Topic</a>
 <!--    <h1 th:text="${loggedInUser.firstName + ' ' + loggedInUser.lastName}"></h1>-->
-    <ol>
+    <ol th:if="${topicList != null}">
         <li th:each="topic: ${topicList}">
             <a th:href="@{/general/{topicSource}(topicSource=${topic.id})}" >
                 <div class="topic-container">
