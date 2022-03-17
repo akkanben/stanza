@@ -148,3 +148,28 @@ footer {
 .footer-list-container li {
     width: 20%;
 }
+
+.footer-list-container h2 {
+   font-family: 'Megrim';
+   margin-top: 25px;
+   font-weight: 300;
+   font-size: 1.2rem;
+}
+
+.footer-list-container i {
+    margin-top: 10px;
+    font-size: 2.5rem;
+    color: #000000;
+}
+
+.footer-list-container i:hover {
+  color: #4e4d4d
+}
+
+.footer-link-container {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}

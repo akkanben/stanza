@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/css/topic.css">
+    <script src="https://kit.fontawesome.com/868c410aa9.js" crossorigin="anonymous"></script>
+
+
     <title>Topic</title>
 </head>
 <body>
@@ -22,7 +25,9 @@
         <ol>
             <li th:each="post: ${currentTopic.topicPostList}" class="single-post-container">
                 <div class="author-container">
-                    <img src="https://placekitten.com/g/100/100" alt="avatar"/>
+                    <a th:href="'/profile/' + ${post.postingUser.id}">
+                    <img th:src="'/images/avatars/' + ${post.postingUser.avatar}" alt="avatar"/>
+                    </a>
                     <a th:href="'/profile/' + ${post.postingUser.id}"><h3 th:text="${post.postingUser.username}"></h3>
                     </a>
                 </div>
@@ -47,7 +52,7 @@
             <fieldset>
                 <!--TODO: Optional--add minimum character count -->
                 <div class="author-container">
-                    <img src="https://placekitten.com/g/100/100" alt="avatar"/>
+                    <img th:src="'/images/avatars/' + ${loggedInUser.avatar}" alt="avatar"/>
                     <a th:href="'/profile/' + ${loggedInUser.id}"><h3 th:text="${loggedInUser.username}"></h3></a>
                 </div>
                 <div class="message-submit-container">

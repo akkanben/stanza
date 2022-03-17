@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/css/profile.css">
+    <script src="https://kit.fontawesome.com/868c410aa9.js" crossorigin="anonymous"></script>
+
     <title>Profile</title>
 </head>
 <body>
@@ -20,7 +22,7 @@
     </div>
     <div class="user-details-container">
         <div class="avatar-container">
-            <img src="https://placekitten.com/g/100/100" alt="avatar"/>
+            <img th:src="'/images/avatars/' + ${currentProfileUser.avatar}" alt="avatar"/>
         </div>
         <ul th:if="${currentProfileUser != null}" class="profile-details-container">
             <div class="label-data-pairs-container">
