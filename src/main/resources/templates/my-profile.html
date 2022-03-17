@@ -29,8 +29,10 @@
             </fieldset>
             <fieldset>
                 <label for="bio">Edit User Bio</label>
-                <input type="text" name="bio" th:placeholder="${loggedInUser.bio}">
-                <input type="submit" value="Update Profile">
+                <textarea type="text" name="bio" th:placeholder="${loggedInUser.bio}"></textarea>
+            </fieldset>
+            <fieldset>
+                <input type="submit" value="Update Profile" class="button">
             </fieldset>
         </form>
     </div>

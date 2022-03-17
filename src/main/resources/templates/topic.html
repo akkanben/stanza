@@ -26,13 +26,14 @@
                     <a th:href="'/profile/' + ${post.postingUser.id}"><h3 th:text="${post.postingUser.username}"></h3>
                     </a>
                 </div>
-                <div class="single-post-message-container">
+                <div class="single-post-message-container" th:id="${post.id}">
                     <h2 th:text="'Re: ' + ${currentTopic.subject}"></h2>
                     <div class="single-post-details">
                         <a th:href="'/profile/' + ${post.postingUser.id}"><h3
                                 th:text="${post.postingUser.username}"></h3>
                         </a>
                         <p th:text="'Posted: ' + ${post.date}"></p>
+                        <p th:text="${post.id}"></p>
                     </div>
                     <div class="single-post-body"
                     <p th:text="${post.body}"></p>

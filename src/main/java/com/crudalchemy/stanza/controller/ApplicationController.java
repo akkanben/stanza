@@ -23,6 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.*;
 
+import static java.util.Comparator.reverseOrder;
+
 @Controller
 public class ApplicationController {
 
@@ -69,6 +71,19 @@ public class ApplicationController {
         Topic currentTopic = topicRepository.getById(topicId);
         model.addAttribute("currentTopic", currentTopic);
         return "topic.html";
+    }
+
+    // Alternate GetMapping for linking to a specific post (from profile)
+    @GetMapping("/general/{topicId}/{postId}")
+    public RedirectView getTopicPage(Principal principal, @PathVariable long topicId, @PathVariable String postId, Model model) {
+        if(principal != null) {
+            // revisit - possibly change loggedInUser
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+            model.addAttribute("loggedInUser", loggedInUser);
+        }
+        Topic currentTopic = topicRepository.getById(topicId);
+        model.addAttribute("currentTopic", currentTopic);
+        return new RedirectView("/general/" + topicId + "#" + postId);
     }
 
     @GetMapping("/create-account")
@@ -191,8 +206,15 @@ public class ApplicationController {
             return "profile.html";
         }
         m.addAttribute("currentProfileUser", currentProfileUser);
+        List<Post> lastFivePostsList = postRepository.findAllByPostingUser(currentProfileUser).stream().sorted((a, b) -> {
+            return b.getDate().compareTo(a.getDate());
+        }).toList();
+        m.addAttribute("lastFivePostsList", lastFivePostsList);
+        int postCount = 0;
+        m.addAttribute(postCount);
         return "profile.html";
     }
+
 
     @GetMapping("/profile")
     public String getUserProfilePage(Principal p, Model m) {
