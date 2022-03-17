@@ -42,3 +42,12 @@ form fieldset:last-child input {
 form fieldset:last-child {
     justify-content: right;
 }
+
+#avatar-re-roll {
+    justify-content: space-between;
+}
+
+#avatar-re-roll input {
+    height: fit-content;
+    align-self: flex-end;
+}
