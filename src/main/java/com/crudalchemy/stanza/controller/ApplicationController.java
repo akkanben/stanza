@@ -58,7 +58,8 @@ public class ApplicationController {
             model.addAttribute("loggedInUser", loggedInUser);
         }
         List<Topic> topicList = topicRepository.findByOrderByMostRecentPostDateDesc();
-        model.addAttribute("topicList", topicList);
+        if (topicList != null)
+            model.addAttribute("topicList", topicList);
         return "board.html";
     }
 
@@ -119,10 +120,10 @@ public class ApplicationController {
 
         String hashedPassword = passwordEncoder.encode(password);
         ApplicationUser newUser = new ApplicationUser(username, hashedPassword, firstName, lastName, bio);
-
+        Random random = new Random();
+        newUser.setAvatar(random.nextInt(1,51) + ".png");
         applicationUserRepository.save(newUser);
         authWithHttpServletRequest(username, password);
-
         return new RedirectView("/");
     }
 
@@ -248,6 +249,18 @@ public class ApplicationController {
             if (bio != "") loggedInUser.setBio(bio);
             applicationUserRepository.save(loggedInUser);
             m.addAttribute("loggedInUser", loggedInUser);
+        }
+        return new RedirectView("/profile");
+    }
+
+    @PostMapping("/re-roll-avatar")
+    public RedirectView reRollAvatar(Principal principal, Model model) {
+        if (principal != null) {
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+            Random random = new Random();
+            loggedInUser.setAvatar(random.nextInt(1,51) + ".png");
+            applicationUserRepository.save(loggedInUser);
+            model.addAttribute("loggedInUser", loggedInUser);
         }
         return new RedirectView("/profile");
     }

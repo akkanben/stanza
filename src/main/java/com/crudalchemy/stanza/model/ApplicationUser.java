@@ -28,8 +28,8 @@ public class ApplicationUser implements UserDetails {
     String password;
 
     String firstName;
-
     String lastName;
+    String avatar;
 
     @Column(columnDefinition = "text")
     String bio;
@@ -149,5 +149,13 @@ public class ApplicationUser implements UserDetails {
 
     public void addTopicToUserTopicList(Topic topic) {
         userThreadList.add(topic);
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

@@ -20,7 +20,7 @@
     </div>
     <div class="user-details-container">
         <div class="avatar-container">
-            <img src="https://placekitten.com/g/100/100" alt="avatar"/>
+            <img th:src="'/images/avatars/' + ${currentProfileUser.avatar}" alt="avatar"/>
         </div>
         <ul th:if="${currentProfileUser != null}" class="profile-details-container">
             <div class="label-data-pairs-container">
