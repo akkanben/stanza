@@ -71,15 +71,21 @@
 .single-post-details {
     display: flex;
     flex-direction: row;
+    padding-top: 0.5em;
+}
+.single-post-details a {
+    padding-right: 1em;
 }
 
 .author-container {
-   width: 10%;
+    width: 10%;
     padding: 1em;
+    text-align: left;
 }
 
 .author-container img {
-    padding-top: .5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 }
 
 .single-post-message-container {
