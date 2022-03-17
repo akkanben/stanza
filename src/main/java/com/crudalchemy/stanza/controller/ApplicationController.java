@@ -78,7 +78,6 @@ public class ApplicationController {
     @GetMapping("/general/{topicId}/{postId}")
     public RedirectView getTopicPage(Principal principal, @PathVariable long topicId, @PathVariable String postId, Model model) {
         if(principal != null) {
-            // revisit - possibly change loggedInUser
             ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
             model.addAttribute("loggedInUser", loggedInUser);
         }
@@ -148,7 +147,19 @@ public class ApplicationController {
     }
 
     @PostMapping("/login")
-    public RedirectView loginToApp(String username, String password) {
+    public RedirectView loginToApp(RedirectAttributes errors, String username, String password) {
+        ArrayList<String> errorList = new ArrayList<>();
+        if(!applicationUserRepository.findByUsername(username).getPassword().equals(password)
+            || applicationUserRepository.findByUsername(username) == null){
+            errorList.add("Invalid credentials");
+        }
+
+        if (errorList.size() > 0) {
+            errors.addFlashAttribute("errorMessageList", errorList);
+            return new RedirectView("/login");
+        }
+
+
         return new RedirectView("/");
     }
 
