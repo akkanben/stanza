@@ -18,7 +18,10 @@
 </header>
 <main>
     <h1>Enter New Account Details</h1>
-    <div th:unless="errorMessageList[1] == null">
+    <div th:unless="${errorMessageList}">
+        <img src="../images/pencil.png" width="20%">
+    </div>
+    <div th:if="${errorMessageList}">
         <img src="../images/broken-pencil.png" width="20%">
     <ul>
         <li th:each="errorMessage: ${errorMessageList}">

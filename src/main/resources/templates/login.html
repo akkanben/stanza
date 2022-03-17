@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -17,6 +17,15 @@
 </header>
 <main>
     <h1>Please Log In</h1>
+    <div th:unless="${errorMessageList}">
+        <img src="../images/form.png" width="20%">
+    </div>
+    <div th:if="${errorMessageList}">
+        <div th:each="errorMessage: ${errorMessageList}">
+        <img src="../images/broken-form.png width=20%">
+        <h3 th:text="${errorMessage}"></h3>
+        </div>
+    </div>
     <form action="/login" method="post">
         <fieldset>
             <label for="username">Username</label>
