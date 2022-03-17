@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.persistence.EntityNotFoundException;
@@ -51,7 +52,7 @@ public class ApplicationController {
     // possibly rename in the future
     @GetMapping("/general")
     public String getGeneralBoard(Principal principal, Model model) {
-        if(principal != null) {
+        if (principal != null) {
             // revisit - possibly change loggedInUser
             ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
             model.addAttribute("loggedInUser", loggedInUser);
@@ -63,7 +64,7 @@ public class ApplicationController {
 
     @GetMapping("/general/{topicId}")
     public String getTopicPage(Principal principal, @PathVariable long topicId, Model model) {
-        if(principal != null) {
+        if (principal != null) {
             // revisit - possibly change loggedInUser
             ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
             model.addAttribute("loggedInUser", loggedInUser);
@@ -88,7 +89,7 @@ public class ApplicationController {
 
     @GetMapping("/create-account")
     public String getCreateAccountPage(Principal principal, Model model) {
-        if(principal != null) {
+        if (principal != null) {
             // revisit - possibly change loggedInUser
             ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
             model.addAttribute("loggedInUser", loggedInUser);
@@ -98,10 +99,22 @@ public class ApplicationController {
 
     //TODO: redirect to previous page from before account creation
     @PostMapping("/create-account")
-    public RedirectView addNewAccount(String username, String password, String firstName, String lastName, String bio) {
-        //TODO: add conditional message/logic for attempted account creation when username already exists
+    public RedirectView addNewAccount(RedirectAttributes errors, String username, String password, String firstName, String lastName, String bio) {
+
+        ArrayList<String> errorList = new ArrayList<>();
+        if (username.length() < 3
+                || username.length() > 25) {
+            errorList.add("Usernames must be between 3 and 20 characters long!");
+        }
+        if (password.length() < 8) {
+            errorList.add("Passwords must be at least 8 characters long!");
+        }
         if (applicationUserRepository.findByUsername(username) != null) {
-            return new RedirectView("/");
+            errorList.add("Choose another username");
+        }
+        if (errorList.size() > 0) {
+            errors.addFlashAttribute("errorMessageList", errorList);
+            return new RedirectView("/create-account");
         }
 
         String hashedPassword = passwordEncoder.encode(password);
@@ -112,6 +125,7 @@ public class ApplicationController {
 
         return new RedirectView("/");
     }
+
 
     public void authWithHttpServletRequest(String username, String password) {
         try {
@@ -125,7 +139,7 @@ public class ApplicationController {
 
     @GetMapping("/login")
     public String getLoginPage(Principal principal, Model model) {
-        if(principal != null) {
+        if (principal != null) {
             // revisit - possibly change loggedInUser
             ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
             model.addAttribute("loggedInUser", loggedInUser);
@@ -134,7 +148,7 @@ public class ApplicationController {
     }
 
     @PostMapping("/login")
-    public RedirectView loginToApp(String username, String password){
+    public RedirectView loginToApp(String username, String password) {
         return new RedirectView("/");
     }
 
@@ -143,7 +157,7 @@ public class ApplicationController {
         if (principal != null) {
             try {
                 httpServletRequest.logout();
-            } catch(ServletException servletException) {
+            } catch (ServletException servletException) {
                 System.out.println("Error logging out");
                 servletException.printStackTrace();
             }
@@ -152,8 +166,8 @@ public class ApplicationController {
     }
 
     @PostMapping("/create-topic")
-    public RedirectView addNewTopic(Principal principal, Model model, String subject, String body){
-        if(principal != null) {
+    public RedirectView addNewTopic(Principal principal, Model model, String subject, String body) {
+        if (principal != null) {
             // revisit - possibly change loggedInUser
             ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
             model.addAttribute("loggedInUser", loggedInUser);
@@ -169,8 +183,8 @@ public class ApplicationController {
     }
 
     @GetMapping("/create-topic")
-    public String getNewTopicPage(Principal principal, Model model){
-        if(principal != null) {
+    public String getNewTopicPage(Principal principal, Model model) {
+        if (principal != null) {
             // revisit - possibly change loggedInUser
             ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
             model.addAttribute("loggedInUser", loggedInUser);
@@ -180,7 +194,7 @@ public class ApplicationController {
 
     @PostMapping("/add-post")
     public RedirectView addNewPost(Principal principal, Model model, String body, long topicId) {
-        if(principal != null) {
+        if (principal != null) {
             ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
             model.addAttribute("loggedInUser", loggedInUser);
             Topic topic = topicRepository.getById(topicId);

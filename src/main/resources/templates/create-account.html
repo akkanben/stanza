@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -16,6 +16,14 @@
 </header>
 <main>
     <h1>Enter New Account Details</h1>
+    <div th:unless="errorMessageList[1] == null">
+        <img src="../images/broken-pencil.png" width="20%">
+    <ul>
+        <li th:each="errorMessage: ${errorMessageList}">
+            <h3 th:text="${errorMessage}"></h3>
+        </li>
+    </ul>
+    </div>
     <form action="/create-account" method="post">
         <fieldset>
             <label for="username">Username</label>
