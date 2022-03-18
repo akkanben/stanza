@@ -57,10 +57,6 @@ article {
 }
 
 
-fieldset {
-
-}
-
 legend {
     font-size: 1.5em;
     padding-bottom: 2em;
@@ -76,14 +72,7 @@ input, textarea{
 
 /*  CLASSES  */
 
-.button {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    margin: 10px 0;
-    cursor: pointer;
-}
-
+/* LOGO AND WEBSITE NAME */
 .logo {
     background: url(../../images/log) no-repeat 6px center;
       width: 50px;
@@ -98,7 +87,7 @@ input, textarea{
 }
 
 .logo-container h1 {
-   font-family: 'Megrim';
+   font-family: 'Courgette', cursive;
    font-size: 3rem;
    margin-left: 15px;
    letter-spacing: 3px;
@@ -112,6 +101,15 @@ input, textarea{
 
 .li-button {
     margin-top: 15px;
+}
+
+/* LOGIN BUTTONS */
+.button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    margin: 10px 0;
+    cursor: pointer;
 }
 
 .button-login {
@@ -141,6 +139,7 @@ input, textarea{
 }
 
 .button-logout {
+    color: black;
     background-color: white;
     padding: 5px 10px;
     border: none;
@@ -192,6 +191,7 @@ input, textarea{
 }
 
 .button-profile {
+    color: black;
     background-color: white;
     padding: 5px 10px;
     border: none;
@@ -265,13 +265,13 @@ header li {
 }
 
 .home-link-container {
-    width: 80%;
+    width: 60%;
     text-align: left;
     margin-left: 2.5%;
 }
 
 .right-navigation {
-    width: 15%;
+    width: 40%;
     display: flex;
     flex-direction: row;
     margin-right: 2.5%;
@@ -319,7 +319,7 @@ footer {
 }
 
 .footer-list-container i:hover {
-  color: #6f00ff
+  color: #8D5FD0
 }
 
 .footer-link-container {
