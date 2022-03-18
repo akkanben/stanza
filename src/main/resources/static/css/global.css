@@ -40,7 +40,6 @@ form {
 }
 
 
-
 article {
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.77);
@@ -85,6 +84,138 @@ input, textarea{
     cursor: pointer;
 }
 
+.logo {
+    background: url(../../images/log) no-repeat 6px center;
+      width: 50px;
+      height: 50px;
+      display: block;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction row;
+    align-items: center;
+}
+
+.logo-container h1 {
+   font-family: 'Megrim';
+   font-size: 3rem;
+   margin-left: 15px;
+   letter-spacing: 3px;
+
+}
+
+.logo:hover {
+    transform: translateY(-2px);
+    transition: .5s;
+}
+
+.li-button {
+    margin-top: 15px;
+}
+
+.button-login {
+    background-color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    margin: 50px 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.button-login:hover {
+   color: black;
+   background-color: #75CF60;
+   transition: .5s;
+   border-radius: 5px;
+   transform: translateY(-2px);
+   box-shadow:
+         0 1px 1px hsl(0deg 0% 0% / 0.075),
+         0 2px 2px hsl(0deg 0% 0% / 0.075),
+         0 4px 4px hsl(0deg 0% 0% / 0.075),
+         0 8px 8px hsl(0deg 0% 0% / 0.075),
+         0 16px 16px hsl(0deg 0% 0% / 0.075)
+       ;
+}
+
+.button-logout {
+    background-color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    margin: 10px 0;
+    cursor: pointer;
+    text-decoration: none;
+    transition: .5s;
+}
+
+.button-logout:hover {
+   color: black;
+   background-color: #CC5151;
+   transition: .5s;
+   transform: translateY(-2px);
+   box-shadow:
+         0 1px 1px hsl(0deg 0% 0% / 0.075),
+         0 2px 2px hsl(0deg 0% 0% / 0.075),
+         0 4px 4px hsl(0deg 0% 0% / 0.075),
+         0 8px 8px hsl(0deg 0% 0% / 0.075),
+         0 16px 16px hsl(0deg 0% 0% / 0.075)
+       ;
+}
+
+.button-sign-up {
+    color: black;
+    background-color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: .5s;
+    text-decoration: none;
+}
+
+.button-sign-up:hover {
+   color: black;
+   background-color:#FF986F;
+   transition: .5s;
+   transform: translateX(-2px);
+   box-shadow:
+            0 1px 1px hsl(0deg 0% 0% / 0.075),
+            0 2px 2px hsl(0deg 0% 0% / 0.075),
+            0 4px 4px hsl(0deg 0% 0% / 0.075),
+            0 8px 8px hsl(0deg 0% 0% / 0.075),
+            0 16px 16px hsl(0deg 0% 0% / 0.075)
+          ;
+}
+
+.button-profile {
+    background-color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: .5s;
+    text-decoration: none;
+}
+
+.button-profile:hover {
+   color: black;
+   background-color: #61B6D1;
+   transition: .5s;
+   transform: translateX(-2px);
+   box-shadow:
+         0 1px 1px hsl(0deg 0% 0% / 0.075),
+         0 2px 2px hsl(0deg 0% 0% / 0.075),
+         0 4px 4px hsl(0deg 0% 0% / 0.075),
+         0 8px 8px hsl(0deg 0% 0% / 0.075),
+         0 16px 16px hsl(0deg 0% 0% / 0.075)
+       ;
+}
+  
 .admin-badge {
     display: flex;
     width: 30%;
@@ -188,7 +319,7 @@ footer {
 }
 
 .footer-list-container i:hover {
-  color: #4e4d4d
+  color: #6f00ff
 }
 
 .footer-link-container {

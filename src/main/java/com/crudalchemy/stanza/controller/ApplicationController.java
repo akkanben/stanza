@@ -276,7 +276,11 @@ public class ApplicationController {
 
 
     @GetMapping("/about")
-    public String getAboutUsPage() {
+    public String getAboutUsPage(Principal principal, Model model) {
+        if(principal != null){
+        ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+        model.addAttribute("loggedInUser", loggedInUser);
+        }
         return "about-us.html";
     }
 
