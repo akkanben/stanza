@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/profile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Damion&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/868c410aa9.js" crossorigin="anonymous"></script>
+
+    <title>Profile</title>
+</head>
+<body>
+<header>
+    <div th:replace="fragments/header :: ul"></div>
+</header>
+<main>
+    <div th:if="${currentProfileUser != null}">
+        <h1 th:text="${currentProfileUser.username + '''s Profile'}"></h1>
+    </div>
+    <div class="user-details-container">
+        <div class="avatar-container">
+            <img th:src="'/images/avatars/' + ${currentProfileUser.avatar}" alt="avatar"/>
+            <div th:if="${loggedInUser != null && loggedInUser.getAdmin()}">
+                <form action="/toggle-admin" method="post">
+                    <fieldset>
+                        <input type="hidden" name="userId" th:value="${currentProfileUser.id}">
+                        <input th:if="${currentProfileUser.getAdmin()}" type="submit" class="button"
+                               value="Revoke Admin">
+                        <input th:if="${!currentProfileUser.getAdmin()}" type="submit" class="button"
+                               value="Enable Admin">
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <ul th:if="${currentProfileUser != null}" class="profile-details-container">
+            <div class="label-data-pairs-container">
+                <li class="profile-label">First Name</li>
+                <li th:text="${currentProfileUser.firstName}"></li>
+            </div>
+            <div class="label-data-pairs-container">
+                <li class="profile-label">Last Name</li>
+                <li th:text="${currentProfileUser.lastName}"></li>
+            </div>
+            <div class="label-data-pairs-container">
+                <li class="profile-label">Username</li>
+                <div th:if="${currentProfileUser.getAdmin()}">
+                <li class="admin-badge">&#128220;<span th:text="${currentProfileUser.username}"></span></li>
+                </div>
+                <div th:unless="${currentProfileUser.getAdmin()}">
+                    <li th:text="${currentProfileUser.username}"></li>
+                </div>
+            </div>
+            <div class="label-data-pairs-container">
+                <li class="profile-label">Bio</li>
+                <li th:text="${currentProfileUser.bio}"></li>
+            </div>
+        </ul>
+        <div th:unless="${currentProfileUser != null}">
+            <h1 th:text="${errorMessage}"></h1>
+            <a href="/">Return Home</a>
+        </div>
+    </div>
+
+    <h2 class="recent-header">Most Recent Posts</h2>
+    <ol th:if="${lastFivePostsList.size() > 0}" class="recent-posts-container">
+        <li th:each="post : ${lastFivePostsList.stream().limit(5).toList()}" class="single-post-container">
+            <a th:href="@{/general/{topicSource}(topicSource=${post.topic.id} + '/' + ${post.id})}"
+               class="profile-topic-link">
+                <span th:text="${post.topic.subject}"></span>
+            </a>
+            <span th:text="${post.body.substring(0, post.body.length() > 40 ? 40 : post.body.length())} + '...'"
+                  class="profile-body-summary"></span>
+            <span th:text="${post.date}" class="profile-post-date"></span>
+        </li>
+    </ol>
+    <ol th:unless="${lastFivePostsList.size() > 0}">No Recent Posts :(</ol>
+
+</main>
+<footer>
+    <div th:replace="fragments/footer :: ul"></div>
+</footer>
+</body>
+</html>

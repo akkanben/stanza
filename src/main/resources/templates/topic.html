@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Damion&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/868c410aa9.js" crossorigin="anonymous"></script>
+
+
+    <title>Topic</title>
+</head>
+<body>
+<header>
+    <div th:replace="fragments/header :: ul"></div>
+</header>
+
+<main>
+    <h1 th:text="${currentTopic.subject}"></h1>
+    <a href="/general" class="return-to-board-link">Back to General</a>
+    <div class="post-list-container">
+        <ol>
+            <li th:each="post: ${currentTopic.topicPostList}" class="single-post-container">
+                <div class="author-container">
+                    <a th:href="'/profile/' + ${post.postingUser.id}">
+                    <img th:src="'/images/avatars/' + ${post.postingUser.avatar}" alt="avatar"/>
+                    </a>
+                    <a th:href="'/profile/' + ${post.postingUser.id}"><h3 th:text="${post.postingUser.username}"></h3>
+                    </a>
+                </div>
+                <div class="single-post-message-container" th:id="${post.id}">
+                    <h2 th:text="'Re: ' + ${currentTopic.subject}"></h2>
+                    <form th:if="${loggedInUser != null && loggedInUser.getAdmin()}" action="/delete-post" method="post">
+                        <fieldset>
+                            <input type="hidden" name="topicId" th:value="${currentTopic.id}">
+                            <input type="hidden" th:value="${post.id}" name="postId">
+                            <input type="submit" class="button" value="Delete Post">
+                        </fieldset>
+                    </form>
+                    <div class="single-post-details">
+                        <a th:href="'/profile/' + ${post.postingUser.id}">
+                            <div th:unless="${post.postingUser.getAdmin()}">
+                            <h3 th:text="${post.postingUser.username}"></h3>
+                            </div>
+                            <div class="single-topic-container" th:if="${post.postingUser.getAdmin()}">
+                                <h3 class="admin-badge">&#128220;<span th:text="${post.postingUser.username}"/></h3>
+                            </div>
+                        </a>
+                        <p th:text="'Posted: ' + ${post.date}"></p>
+                        <p th:text="${post.id}"></p>
+                    </div>
+                    <div class="single-post-body"></div>
+                    <p th:text="${post.body}"></p>
+                </div>
+            </li>
+        </ol>
+        <form th:if="${loggedInUser != null}" action="/add-post" method="post" class="add-new-post-container" id="goto-bottom">
+            <div class="add-thoughts-container">
+                <h2>Add your thoughts!</h2>
+            </div>
+            <fieldset>
+                <!--TODO: Optional--add minimum character count -->
+                <div class="author-container">
+                    <img th:src="'/images/avatars/' + ${loggedInUser.avatar}" alt="avatar"/>
+                    <a th:href="'/profile/' + ${loggedInUser.id}"><h3 th:text="${loggedInUser.username}"></h3></a>
+                </div>
+                <div class="message-submit-container">
+                    <textarea name="body" required></textarea>
+                    <input type="hidden" name="topicId" th:value="${currentTopic.getId()}">
+                    <div class="button-container">
+                        <input type="submit" value="Submit Post" class="button submit-post-button">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</main>
+
+<footer>
+    <div th:replace="fragments/footer :: ul"></div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/board.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Damion&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/868c410aa9.js" crossorigin="anonymous"></script>
+
+    <title>Stanza Forums</title>
+</head>
+<body>
+<header>
+    <div th:replace="fragments/header :: ul"></div>
+</header>
+<main>
+    <h1 class="header-title">General Topic</h1>
+    <div class="create-topic-container">
+        <a href="/create-topic" class="create-topic-link" id="new-topic-button">New Topic</a>
+    </div>
+    <div class="topic-list-header">
+        <span class="title-heading">Topic Title</span>
+        <span class="author-heading">Author</span>
+        <span class="last-post-date-heading">Last Post Date</span>
+    </div>
+    <ol th:if="${topicList != null}" class="topic-list-container">
+
+
+        <li th:each="topic: ${topicList}" class="single-topic-container">
+
+
+            <a th:href="@{/general/{topicSource}(topicSource=${topic.id})}" class="topic-link">
+                <span th:text="${topic.subject}"></span>
+            </a>
+            <form th:if="${loggedInUser != null && loggedInUser.getAdmin()}" action="/delete-topic" method="post">
+                <fieldset>
+                    <input type="hidden" name="topicId" th:value="${topic.id}">
+                    <input type="submit" class="button" value="delete">
+                </fieldset>
+            </form>
+            <a th:unless="${topic.originalPoster.getAdmin()}" th:href="'/profile/' + ${topic.originalPoster.id}"
+               th:text="${topic.originalPoster.username}"
+               class="topic-author-link"></a>
+            <div th:if="${topic.originalPoster.getAdmin()}" class="admin-badge-topic">
+                <p>&#128220;<a th:href="'/profile/' + ${topic.originalPoster.id}" th:text="${topic.originalPoster.username}"></a></p>
+            </div>
+            <span th:text="${topic.mostRecentPostDate}" class="topic-last-post-date"></span>
+
+        </li>
+    </ol>
+</main>
+<footer>
+    <div th:replace="fragments/footer :: ul"></div>
+</footer>
+</body>
+</html>

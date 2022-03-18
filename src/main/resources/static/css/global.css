@@ -1,0 +1,348 @@
+body {
+    background-image: url("/images/bg.png");
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: "georgia";
+}
+
+
+main {
+    text-align: center;
+    padding-top: 1em;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+a {
+
+}
+
+a:link {
+    color: #4e20a3;
+}
+
+a:hover {
+    color: #8a1a8bbf;
+}
+
+a:link :visited {
+    color: #c75dd9;
+}
+
+
+h1 {
+    font-size: large;
+}
+
+h2 {
+
+}
+
+h3 {
+
+}
+
+
+li {
+}
+
+form {
+
+}
+
+
+article {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.77);
+    margin: 2% 0;
+    width: 80%;
+    border-radius: 4px;
+    box-shadow:
+            1.4px 0.4px 2.2px rgba(0, 0, 0, 0.02),
+            3.3px 1px 5.3px rgba(0, 0, 0, 0.028),
+            6.1px 1.9px 10px rgba(0, 0, 0, 0.035),
+            10.9px 3.4px 17.9px rgba(0, 0, 0, 0.042),
+            20.5px 6.3px 33.4px rgba(0, 0, 0, 0.05),
+            49px 15px 80px rgba(0, 0, 0, 0.07)
+;
+}
+
+
+legend {
+    font-size: 1.5em;
+    padding-bottom: 2em;
+}
+
+label {
+    padding: 1em 0 0.5em 0;
+}
+
+input, textarea{
+    background-color: #f3f3f3;
+}
+
+/*  CLASSES  */
+
+/* LOGO AND WEBSITE NAME */
+.logo {
+    background: url(../../images/log) no-repeat 6px center;
+      width: 50px;
+      height: 50px;
+      display: block;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction row;
+    align-items: center;
+}
+
+.logo-container h1 {
+   font-family: 'Courgette', cursive;
+   font-size: 3rem;
+   margin-left: 15px;
+   letter-spacing: 3px;
+
+}
+
+.logo:hover {
+    transform: translateY(-2px);
+    transition: .5s;
+}
+
+.li-button {
+    margin-top: 15px;
+}
+
+/* LOGIN BUTTONS */
+.button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.button-login {
+    background-color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    margin: 50px 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.button-login:hover {
+   color: black;
+   background-color: #75CF60;
+   transition: .5s;
+   border-radius: 5px;
+   transform: translateY(-2px);
+   box-shadow:
+         0 1px 1px hsl(0deg 0% 0% / 0.075),
+         0 2px 2px hsl(0deg 0% 0% / 0.075),
+         0 4px 4px hsl(0deg 0% 0% / 0.075),
+         0 8px 8px hsl(0deg 0% 0% / 0.075),
+         0 16px 16px hsl(0deg 0% 0% / 0.075)
+       ;
+}
+
+.button-logout {
+    color: black;
+    background-color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    margin: 10px 0;
+    cursor: pointer;
+    text-decoration: none;
+    transition: .5s;
+}
+
+.button-logout:hover {
+   color: black;
+   background-color: #CC5151;
+   transition: .5s;
+   transform: translateY(-2px);
+   box-shadow:
+         0 1px 1px hsl(0deg 0% 0% / 0.075),
+         0 2px 2px hsl(0deg 0% 0% / 0.075),
+         0 4px 4px hsl(0deg 0% 0% / 0.075),
+         0 8px 8px hsl(0deg 0% 0% / 0.075),
+         0 16px 16px hsl(0deg 0% 0% / 0.075)
+       ;
+}
+
+.button-sign-up {
+    color: black;
+    background-color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: .5s;
+    text-decoration: none;
+}
+
+.button-sign-up:hover {
+   color: black;
+   background-color:#FF986F;
+   transition: .5s;
+   transform: translateX(-2px);
+   box-shadow:
+            0 1px 1px hsl(0deg 0% 0% / 0.075),
+            0 2px 2px hsl(0deg 0% 0% / 0.075),
+            0 4px 4px hsl(0deg 0% 0% / 0.075),
+            0 8px 8px hsl(0deg 0% 0% / 0.075),
+            0 16px 16px hsl(0deg 0% 0% / 0.075)
+          ;
+}
+
+.button-profile {
+    color: black;
+    background-color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: .5s;
+    text-decoration: none;
+}
+
+.button-profile:hover {
+   color: black;
+   background-color: #61B6D1;
+   transition: .5s;
+   transform: translateX(-2px);
+   box-shadow:
+         0 1px 1px hsl(0deg 0% 0% / 0.075),
+         0 2px 2px hsl(0deg 0% 0% / 0.075),
+         0 4px 4px hsl(0deg 0% 0% / 0.075),
+         0 8px 8px hsl(0deg 0% 0% / 0.075),
+         0 16px 16px hsl(0deg 0% 0% / 0.075)
+       ;
+}
+  
+.admin-badge {
+    display: flex;
+    width: 30%;
+    padding: .5em;
+    text-align:right;
+}
+
+.admin-badge-topic {
+    display: flex;
+    width: 30%;
+    padding: 0.5em;
+    flex-direction: column;
+    text-align: right;
+}
+
+.pencil {
+    margin: 25px;
+}
+
+.board-title {
+    font-weight: 700;
+    font-size: 2.7rem;
+}
+
+/*   IDS   */
+
+
+
+/* H E A D E R */
+header {
+    height: 20%;
+    background-color: rgb(201, 201, 201);
+}
+
+header a:hover {
+    color: #7c7c7c;
+}
+
+header ul {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+
+header li {
+    padding: 1em 0;
+}
+
+.home-link-container {
+    width: 60%;
+    text-align: left;
+    margin-left: 2.5%;
+}
+
+.right-navigation {
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    margin-right: 2.5%;
+    text-align: right;
+    justify-content: right;
+}
+
+.right-navigation a {
+    color: black;
+}
+
+.right-navigation li:first-child {
+    padding-right: 2em;
+}
+
+/* F O O T E R */
+
+footer {
+    background-color: #bdbdbd;
+    height: 5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-list-container {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    justify-content: center;
+    text-align: center;
+}
+.footer-list-container li {
+    width: 20%;
+}
+
+.footer-list-container h2 {
+   font-family: 'Megrim';
+   margin-top: 25px;
+   font-weight: 300;
+   font-size: 1.2rem;
+}
+
+.footer-list-container i {
+    margin-top: 10px;
+    font-size: 2.5rem;
+    color: #000000;
+}
+
+.footer-list-container i:hover {
+  color: #8D5FD0
+}
+
+.footer-link-container {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}

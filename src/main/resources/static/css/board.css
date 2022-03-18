@@ -1,0 +1,171 @@
+
+.home {
+    font-family: 'Damion', cursive;
+}
+
+.header-title {
+  font-family: 'Courgette', cursive;
+  font-weight: 600;
+  font-size: 2.1rem;
+  letter-spacing: 3px;
+  margin-right: -3px;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #333;
+  position: relative;
+}
+
+.single-topic-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: #e8e7e7;
+    border: 1px solid #cbcbcb;
+    margin: .2em 0;
+    box-shadow:
+            0.4px 0.3px 0.7px -14px rgba(0, 0, 0, 0.037),
+            1px 0.8px 1.8px -14px rgba(0, 0, 0, 0.053),
+            1.9px 1.5px 3.4px -14px rgba(0, 0, 0, 0.065),
+            3.4px 2.7px 6px -14px rgba(0, 0, 0, 0.077),
+            6.3px 5px 11.3px -14px rgba(0, 0, 0, 0.093),
+            15px 12px 27px -14px rgba(0, 0, 0, 0.13)
+;
+}
+
+.single-topic-container .button {
+    margin-left: 1em;
+}
+
+.single-topic-container:nth-child(odd) {
+    background-color: rgba(215, 215, 215, 0.85);
+}
+
+.single-topic-container:hover {
+    background-color: rgba(231, 231, 231, 0.85);
+}
+
+.topic-list-container {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    background-color: #c9c9c9;
+    padding: 0.5em;
+    box-shadow:
+            1.4px 1px 0.6px -29px rgba(0, 0, 0, 0.02),
+            2.7px 2px 1.4px -29px rgba(0, 0, 0, 0.028),
+            4.1px 3.1px 2.6px -29px rgba(0, 0, 0, 0.035),
+            6.5px 4.9px 4.7px -29px rgba(0, 0, 0, 0.042),
+            12.3px 9.3px 8.8px -29px rgba(0, 0, 0, 0.05),
+            37px 28px 21px -29px rgba(0, 0, 0, 0.07)
+;
+}
+
+.topic-link {
+    width: 50%;
+    text-align: left;
+    padding: .5em;
+    text-decoration: none;
+}
+
+.topic-link:hover {
+    width: 50%;
+    text-align: left;
+    padding: .5em;
+    text-decoration: none;
+}
+
+.topic-author-link {
+    width: 30%;
+    text-align: right;
+    padding: .5em;
+    text-decoration: none;
+}
+
+.badge-box{
+    width: 30%;
+    text-align: right;
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+}
+
+.badge-box p{
+margin-left: 20px;
+}
+
+.topic-last-post-date {
+    width: 20%;
+    text-align: right;
+    padding: .5em;
+}
+
+/*.create-new-topic-link {
+    align-self: baseline;
+    margin-left: 2.5%;
+}*/
+
+.create-topic-container {
+    display: flex;
+    flex-direction: row;
+    align-items: right;
+    width: 96%;
+}
+
+.create-topic-link {
+    color: white;
+    background-color: #4e20a3;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .5s;
+    text-decoration: none;
+}
+
+#new-topic-button {
+    color: white;
+}
+
+.create-topic-link:hover {
+   color: white;
+   background-color: #4e20a3
+   transition: .5s;
+   transform: translateX(-2px);
+   box-shadow:
+         0 1px 1px hsl(0deg 0% 0% / 0.075),
+         0 2px 2px hsl(0deg 0% 0% / 0.075),
+         0 4px 4px hsl(0deg 0% 0% / 0.075),
+         0 8px 8px hsl(0deg 0% 0% / 0.075),
+         0 16px 16px hsl(0deg 0% 0% / 0.075)
+       ;
+}
+.topic-list-header {
+    background-color: #b2b2b2;
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    padding: 0.5em;
+    margin-top: 2em;
+}
+
+.title-heading {
+    width: 70%;
+    text-align: left;
+    padding: .5em;
+    font-weight: bold;
+}
+.author-heading {
+    width: 10%;
+    text-align: right;
+    padding: .5em;
+    font-weight: bold;
+
+}
+.last-post-date-heading {
+    width: 20%;
+    text-align: right;
+    padding: .5em;
+    font-weight: bold;
+}

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/create-account.css">
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Damion&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/868c410aa9.js" crossorigin="anonymous"></script>
+
+
+    <title>Create An Account</title>
+</head>
+<body>
+<header>
+    <div th:replace="fragments/header :: ul"></div>
+</header>
+<main>
+    <h1>Enter New Account Details</h1>
+    <div th:unless="${errorMessageList}">
+        <img class="pencil" src="../images/pencil.png" width="20%">
+    </div>
+    <div th:if="${errorMessageList}">
+        <img class="pencil" src="../images/broken-pencil.png" width="20%">
+    <ul>
+        <li th:each="errorMessage: ${errorMessageList}">
+            <h3 th:text="${errorMessage}"></h3>
+        </li>
+    </ul>
+    </div>
+    <form action="/create-account" method="post">
+        <fieldset>
+            <label for="username">Username</label>
+            <input type="text" name="username" placeholder="3-25 Characters">
+        </fieldset>
+        <fieldset>
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="At least 8 Characters">
+        </fieldset>
+        <fieldset>
+            <label for="firstName">First Name</label>
+            <input type="text" name="firstName" placeholder="(Optional)">
+        </fieldset>
+        <fieldset>
+            <label for="lastName">Last Name</label>
+            <input type="text" name="lastName" placeholder="(Optional)">
+        </fieldset>
+        <fieldset>
+            <label for="bio">User Bio</label>
+            <textarea name="bio" placeholder="(Optional)"></textarea>
+        </fieldset>
+        <fieldset>
+            <input type="submit" value="Create Account" class="button">
+        </fieldset>
+
+
+    </form>
+</main>
+<footer>
+    <div th:replace="fragments/footer :: ul"></div>
+</footer>
+</body>
+</html>
