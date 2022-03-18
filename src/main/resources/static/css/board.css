@@ -124,6 +124,10 @@ margin-left: 20px;
     text-decoration: none;
 }
 
+#new-topic-button {
+    color: white;
+}
+
 .create-topic-link:hover {
    color: white;
    background-color: #4e20a3
