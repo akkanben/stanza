@@ -42,7 +42,8 @@
                     <input type="submit" class="button" value="delete">
                 </fieldset>
             </form>
-            <a th:href="'/profile/' + ${topic.originalPoster.id}" th:text="${topic.originalPoster.username}"
+            <a th:unless="${topic.originalPoster.getAdmin()}" th:href="'/profile/' + ${topic.originalPoster.id}"
+               th:text="${topic.originalPoster.username}"
                class="topic-author-link"></a>
             <div th:if="${topic.originalPoster.getAdmin()}" class="admin-badge-topic">
                 <p>&#128220;<a th:href="'/profile/' + ${topic.originalPoster.id}" th:text="${topic.originalPoster.username}"></a></p>
