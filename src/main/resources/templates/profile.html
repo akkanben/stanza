@@ -46,7 +46,12 @@
             </div>
             <div class="label-data-pairs-container">
                 <li class="profile-label">Username</li>
-                <li th:text="${currentProfileUser.username}"></li>
+                <div th:if="${currentProfileUser.getAdmin()}">
+                <li class="admin-badge">&#128220;<span th:text="${currentProfileUser.username}"></span></li>
+                </div>
+                <div th:unless="${currentProfileUser.getAdmin()}">
+                    <li th:text="${currentProfileUser.username}"></li>
+                </div>
             </div>
             <div class="label-data-pairs-container">
                 <li class="profile-label">Bio</li>

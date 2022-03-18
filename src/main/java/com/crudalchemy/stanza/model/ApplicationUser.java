@@ -20,7 +20,7 @@ public class ApplicationUser implements UserDetails {
     long id;
 
     @NotNull
-    @Size(min=3, max=12)
+    @Size(min=3, max=25)
     String username;
 
     @NotNull

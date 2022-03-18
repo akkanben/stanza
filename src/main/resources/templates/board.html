@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/css/board.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Damion&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/868c410aa9.js" crossorigin="anonymous"></script>
 
     <title>Stanza Forums</title>
@@ -17,7 +20,7 @@
     <div th:replace="fragments/header :: ul"></div>
 </header>
 <main>
-    <h1>General Topic</h1>
+    <h1 class="header-title">General Topic</h1>
     <a href="/create-topic" class="create-new-topic-link">New Topic</a>
     <div class="topic-list-header">
         <span class="title-heading">Topic Title</span>
@@ -41,6 +44,9 @@
             </form>
             <a th:href="'/profile/' + ${topic.originalPoster.id}" th:text="${topic.originalPoster.username}"
                class="topic-author-link"></a>
+            <div th:if="${topic.originalPoster.getAdmin()}" class="admin-badge-topic">
+                <p>&#128220;<a th:href="'/profile/' + ${topic.originalPoster.id}" th:text="${topic.originalPoster.username}"></a></p>
+            </div>
             <span th:text="${topic.mostRecentPostDate}" class="topic-last-post-date"></span>
 
         </li>
