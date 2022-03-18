@@ -3,6 +3,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: "georgia";
 }
 
 
@@ -37,7 +38,6 @@ li {
 form {
 
 }
-
 
 
 article {
@@ -214,6 +214,30 @@ input, textarea{
          0 8px 8px hsl(0deg 0% 0% / 0.075),
          0 16px 16px hsl(0deg 0% 0% / 0.075)
        ;
+}
+  
+.admin-badge {
+    display: flex;
+    width: 30%;
+    padding: .5em;
+    text-align:right;
+}
+
+.admin-badge-topic {
+    display: flex;
+    width: 30%;
+    padding: 0.5em;
+    flex-direction: column;
+    text-align: right;
+}
+
+.pencil {
+    margin: 25px;
+}
+
+.board-title {
+    font-weight: 700;
+    font-size: 2.7rem;
 }
 
 /*   IDS   */

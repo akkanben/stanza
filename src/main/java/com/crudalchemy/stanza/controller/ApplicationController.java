@@ -316,5 +316,24 @@ public class ApplicationController {
         }
         return new RedirectView("/general");
     }
+
+    @PostMapping("/toggle-admin")
+    public RedirectView enableAdmin(Principal principal, Model model, long userId) {
+        if (principal != null) {
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+            model.addAttribute("loggedInUser", loggedInUser);
+            ApplicationUser newAdmin = applicationUserRepository.getById(userId);
+            if (loggedInUser.getAdmin() && !newAdmin.getAdmin() ) {
+                newAdmin.setAdmin(true);
+                applicationUserRepository.save(newAdmin);
+            }
+            else if (loggedInUser.getAdmin() && newAdmin.getAdmin()) {
+                newAdmin.setAdmin(false);
+                applicationUserRepository.save(newAdmin);
+            }
+        }
+        return new RedirectView("/profile/" + userId);
+    }
+
 }
 

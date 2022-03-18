@@ -41,8 +41,13 @@
                         </fieldset>
                     </form>
                     <div class="single-post-details">
-                        <a th:href="'/profile/' + ${post.postingUser.id}"><h3
-                                th:text="${post.postingUser.username}"></h3>
+                        <a th:href="'/profile/' + ${post.postingUser.id}">
+                            <div th:unless="${post.postingUser.getAdmin()}">
+                            <h3 th:text="${post.postingUser.username}"></h3>
+                            </div>
+                            <div class="single-topic-container" th:if="${post.postingUser.getAdmin()}">
+                                <h3 class="admin-badge">&#128220;<span th:text="${post.postingUser.username}"/></h3>
+                            </div>
                         </a>
                         <p th:text="'Posted: ' + ${post.date}"></p>
                         <p th:text="${post.id}"></p>

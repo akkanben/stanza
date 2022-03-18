@@ -1,7 +1,25 @@
+
+.home {
+    font-family: 'Damion', cursive;
+}
+
+.header-title {
+  font-family: 'Courgette', cursive;
+  font-weight: 600;
+  font-size: 2.1rem;
+  letter-spacing: 3px;
+  margin-right: -3px;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #333;
+  position: relative;
+}
+
 .single-topic-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     background-color: #e8e7e7;
     border: 1px solid #cbcbcb;
@@ -14,6 +32,10 @@
             6.3px 5px 11.3px -14px rgba(0, 0, 0, 0.093),
             15px 12px 27px -14px rgba(0, 0, 0, 0.13)
 ;
+}
+
+.single-topic-container .button {
+    margin-left: 1em;
 }
 
 .single-topic-container:nth-child(odd) {
@@ -41,15 +63,27 @@
 }
 
 .topic-link {
-    width: 70%;
+    width: 50%;
     text-align: left;
     padding: .5em;
 }
 
 .topic-author-link {
-    width: 10%;
+    width: 30%;
     text-align: right;
     padding: .5em;
+}
+
+.badge-box{
+    width: 30%;
+    text-align: right;
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+}
+
+.badge-box p{
+margin-left: 20px;
 }
 
 .topic-last-post-date {

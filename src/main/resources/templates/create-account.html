@@ -19,10 +19,10 @@
 <main>
     <h1>Enter New Account Details</h1>
     <div th:unless="${errorMessageList}">
-        <img src="../images/pencil.png" width="20%">
+        <img class="pencil" src="../images/pencil.png" width="20%">
     </div>
     <div th:if="${errorMessageList}">
-        <img src="../images/broken-pencil.png" width="20%">
+        <img class="pencil" src="../images/broken-pencil.png" width="20%">
     <ul>
         <li th:each="errorMessage: ${errorMessageList}">
             <h3 th:text="${errorMessage}"></h3>
@@ -32,7 +32,7 @@
     <form action="/create-account" method="post">
         <fieldset>
             <label for="username">Username</label>
-            <input type="text" name="username" placeholder="3-12 Characters">
+            <input type="text" name="username" placeholder="3-25 Characters">
         </fieldset>
         <fieldset>
             <label for="password">Password</label>
