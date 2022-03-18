@@ -8,7 +8,8 @@
 
 a {
   text-decoration: none;
-  color: #fff;
+  color: black;
+
 }
 
 .header-container {
@@ -20,7 +21,7 @@ a {
 .header-title {
   text-transform: uppercase;
   font-family: 'Megrim';
-  font-weight: 800;
+  font-weight: 500;
   font-size: 2.7rem;
   letter-spacing: 3px;
   margin-right: -3px;
@@ -35,7 +36,8 @@ a {
   width: 10rem;
   height: .8rem;
   background: rgb(0,0,0);
-  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(196,193,193,0.6867121848739496) 100%, rgba(0,212,255,1) 100%);
+  background: rgb(89,89,90);
+  background: linear-gradient(90deg, rgba(89,89,90,1) 0%, rgba(111,0,255,1) 0%, rgba(196,193,193,0.6867121848739496) 93%););
 
 
   position: absolute;
@@ -106,12 +108,13 @@ a {
 }
 
 .about {
-  font-size: 1rem;
-  margin: 1.2rem 0;
-  text-align: justify;
+  font-size: 1.2em;
+  margin-top: 10px;
+  margin: 1.1rem 0;
+  text-align: left;
   color: #333;
   width: 90%;
-  height: 150px;
+  height: 100px;
   padding: 5px;
 }
 
@@ -162,7 +165,7 @@ a {
 
 .fa-linkedin-in:hover {
   /*color:  #45B649;*/
-  color: #4e4d4d
+  color: #6f00ff
 }
 
 .fa-github-square {
@@ -171,7 +174,7 @@ a {
 
 .fa-github-square:hover {
   /*color:  #45B649;*/
-  color: #4e4d4d
+  color: #6f00ff
 
 }
 
@@ -181,7 +184,7 @@ a {
 
 .fa-solid fa-people-group:hover {
   /*color:  #45B649;*/
-  color: #4e4d4d
+  color: #6f00ff
 
 }
 
