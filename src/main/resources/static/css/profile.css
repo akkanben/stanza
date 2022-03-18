@@ -25,7 +25,6 @@
 
 .label-data-pairs-container {
     display: flex;
-    justify-content: space-between;
     padding: 1em;
 }
 

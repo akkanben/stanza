@@ -19,6 +19,19 @@ a {
 
 }
 
+a:link {
+    color: #4e20a3;
+}
+
+a:hover {
+    color: #8a1a8bbf;
+}
+
+a:link :visited {
+    color: #c75dd9;
+}
+
+
 h1 {
     font-size: large;
 }
@@ -277,6 +290,10 @@ header li {
     margin-right: 2.5%;
     text-align: right;
     justify-content: right;
+}
+
+.right-navigation a {
+    color: black;
 }
 
 .right-navigation li:first-child {
