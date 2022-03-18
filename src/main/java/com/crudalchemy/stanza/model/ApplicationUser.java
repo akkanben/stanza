@@ -30,6 +30,7 @@ public class ApplicationUser implements UserDetails {
     String firstName;
     String lastName;
     String avatar;
+    Boolean isAdmin = false;
 
     @Column(columnDefinition = "text")
     String bio;
@@ -157,5 +158,13 @@ public class ApplicationUser implements UserDetails {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public Boolean getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
     }
 }

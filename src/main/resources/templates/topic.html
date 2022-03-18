@@ -33,6 +33,13 @@
                 </div>
                 <div class="single-post-message-container" th:id="${post.id}">
                     <h2 th:text="'Re: ' + ${currentTopic.subject}"></h2>
+                    <form th:if="${loggedInUser != null && loggedInUser.getAdmin()}" action="/delete-post" method="post">
+                        <fieldset>
+                            <input type="hidden" name="topicId" th:value="${currentTopic.id}">
+                            <input type="hidden" th:value="${post.id}" name="postId">
+                            <input type="submit" class="button" value="Delete Post">
+                        </fieldset>
+                    </form>
                     <div class="single-post-details">
                         <a th:href="'/profile/' + ${post.postingUser.id}"><h3
                                 th:text="${post.postingUser.username}"></h3>
