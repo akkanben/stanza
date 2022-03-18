@@ -23,6 +23,17 @@
     <div class="user-details-container">
         <div class="avatar-container">
             <img th:src="'/images/avatars/' + ${currentProfileUser.avatar}" alt="avatar"/>
+            <div th:if="${loggedInUser != null && loggedInUser.getAdmin()}">
+                <form action="/toggle-admin" method="post">
+                    <fieldset>
+                        <input type="hidden" name="userId" th:value="${currentProfileUser.id}">
+                        <input th:if="${currentProfileUser.getAdmin()}" type="submit" class="button"
+                               value="Revoke Admin">
+                        <input th:if="${!currentProfileUser.getAdmin()}" type="submit" class="button"
+                               value="Enable Admin">
+                    </fieldset>
+                </form>
+            </div>
         </div>
         <ul th:if="${currentProfileUser != null}" class="profile-details-container">
             <div class="label-data-pairs-container">
