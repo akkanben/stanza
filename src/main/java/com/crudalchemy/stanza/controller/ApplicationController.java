@@ -11,10 +11,7 @@ import org.springframework.boot.Banner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -23,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.util.Comparator.reverseOrder;
 
@@ -219,47 +217,47 @@ public class ApplicationController {
     }
 
     @GetMapping("/profile/{userID}")
-    public String getUserProfilePage(@PathVariable long userID, Principal p, Model m) {
+    public String getUserProfilePage(@PathVariable long userID, Principal principal, Model model) {
         ApplicationUser currentProfileUser = applicationUserRepository.getById(userID);
-        if (p != null) {
-            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(p.getName());
-            m.addAttribute("loggedInUser", loggedInUser);
+        if (principal != null) {
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+            model.addAttribute("loggedInUser", loggedInUser);
         }
         try {
             currentProfileUser.getFirstName();
         } catch (EntityNotFoundException entityNotFoundException) {
-            m.addAttribute("errorMessage", "Could not find a user for that id!");
+            model.addAttribute("errorMessage", "Could not find a user for that id!");
             return "profile.html";
         }
-        m.addAttribute("currentProfileUser", currentProfileUser);
+        model.addAttribute("currentProfileUser", currentProfileUser);
         List<Post> lastFivePostsList = postRepository.findAllByPostingUser(currentProfileUser).stream().sorted((a, b) -> {
             return b.getDate().compareTo(a.getDate());
         }).toList();
-        m.addAttribute("lastFivePostsList", lastFivePostsList);
+        model.addAttribute("lastFivePostsList", lastFivePostsList);
         int postCount = 0;
-        m.addAttribute(postCount);
+        model.addAttribute(postCount);
         return "profile.html";
     }
 
 
     @GetMapping("/profile")
-    public String getUserProfilePage(Principal p, Model m) {
-        if (p != null) {
-            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(p.getName());
-            m.addAttribute("loggedInUser", loggedInUser);
+    public String getUserProfilePage(Principal principal, Model model) {
+        if (principal != null) {
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+            model.addAttribute("loggedInUser", loggedInUser);
         }
         return "my-profile.html";
     }
 
     @PostMapping("/update-account")
-    public RedirectView editUserAccount(Principal p, Model m, String firstName, String lastName, String bio) {
-        if (p != null) {
-            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(p.getName());
+    public RedirectView editUserAccount(Principal principal, Model model, String firstName, String lastName, String bio) {
+        if (principal != null) {
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
             if (firstName != "") loggedInUser.setFirstName(firstName);
             if (lastName != "") loggedInUser.setLastName(lastName);
             if (bio != "") loggedInUser.setBio(bio);
             applicationUserRepository.save(loggedInUser);
-            m.addAttribute("loggedInUser", loggedInUser);
+            model.addAttribute("loggedInUser", loggedInUser);
         }
         return new RedirectView("/profile");
     }
@@ -279,10 +277,40 @@ public class ApplicationController {
 
     @GetMapping("/about")
     public String getAboutUsPage() {
-
         return "about-us.html";
     }
 
+    @PostMapping("/delete-post")
+    public RedirectView deletePost(Principal principal, Model model, long postId, long topicId) {
+        if (principal != null) {
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+            model.addAttribute("loggedInUser", loggedInUser);
+            if (loggedInUser.getAdmin()) {
+                Topic toDeleteTopic = topicRepository.getById(topicId);
+                List<Post> toDeleteTopicPostList = toDeleteTopic.getTopicPostList();
+                if (toDeleteTopicPostList.get(0).getId() == postId) {
+                    topicRepository.deleteById(topicId);
+                    return new RedirectView("/general");
+                } else {
+                    toDeleteTopicPostList = toDeleteTopicPostList.stream().filter(element -> element.getId() != postId).collect(Collectors.toList());
+                    toDeleteTopic.setTopicPostList(toDeleteTopicPostList);
+                    topicRepository.save(toDeleteTopic);
+                    postRepository.deleteById(postId);
+                }
+            }
+        }
+        return new RedirectView("/general/" + topicId + "/" + (postId - 1));
+    }
 
+    @PostMapping("/delete-topic")
+    public RedirectView deleteTopic(Principal principal, Model model, long topicId) {
+        if (principal != null) {
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+            model.addAttribute("loggedInUser", loggedInUser);
+            if (loggedInUser.getAdmin())
+                topicRepository.deleteById(topicId);
+        }
+        return new RedirectView("/general");
+    }
 }
 
