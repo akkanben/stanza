@@ -3,6 +3,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: "georgia";
 }
 
 
@@ -82,6 +83,30 @@ input, textarea{
     border-radius: 4px;
     margin: 10px 0;
     cursor: pointer;
+}
+
+.admin-badge {
+    display: flex;
+    width: 30%;
+    padding: .5em;
+    text-align:right;
+}
+
+.admin-badge-topic {
+    display: flex;
+    width: 30%;
+    padding: 0.5em;
+    flex-direction: column;
+    text-align: right;
+}
+
+.pencil {
+    margin: 25px;
+}
+
+.board-title {
+    font-weight: 700;
+    font-size: 2.7rem;
 }
 
 /*   IDS   */
