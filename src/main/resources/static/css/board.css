@@ -66,12 +66,14 @@
     width: 50%;
     text-align: left;
     padding: .5em;
+    text-decoration: none;
 }
 
 .topic-author-link {
     width: 30%;
     text-align: right;
     padding: .5em;
+    text-decoration: none;
 }
 
 .badge-box{
@@ -92,9 +94,41 @@ margin-left: 20px;
     padding: .5em;
 }
 
-.create-new-topic-link {
+/*.create-new-topic-link {
     align-self: baseline;
     margin-left: 2.5%;
+}*/
+
+.create-topic-container {
+    display: flex;
+    flex-direction: row;
+    align-items: right;
+    width: 96%;
+}
+
+.create-topic-link {
+    color: white;
+    background-color: #61B6D1;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .5s;
+    text-decoration: none;
+}
+
+.create-topic-link:hover {
+   color: white;
+   background-color: #61B6D1;
+   transition: .5s;
+   transform: translateX(-2px);
+   box-shadow:
+         0 1px 1px hsl(0deg 0% 0% / 0.075),
+         0 2px 2px hsl(0deg 0% 0% / 0.075),
+         0 4px 4px hsl(0deg 0% 0% / 0.075),
+         0 8px 8px hsl(0deg 0% 0% / 0.075),
+         0 16px 16px hsl(0deg 0% 0% / 0.075)
+       ;
 }
 .topic-list-header {
     background-color: #b2b2b2;
@@ -109,15 +143,18 @@ margin-left: 20px;
     width: 70%;
     text-align: left;
     padding: .5em;
+    font-weight: bold;
 }
 .author-heading {
     width: 10%;
     text-align: right;
     padding: .5em;
+    font-weight: bold;
 
 }
 .last-post-date-heading {
     width: 20%;
     text-align: right;
     padding: .5em;
+    font-weight: bold;
 }
