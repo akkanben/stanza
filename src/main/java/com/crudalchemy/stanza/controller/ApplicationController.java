@@ -102,7 +102,7 @@ public class ApplicationController {
         ArrayList<String> errorList = new ArrayList<>();
         if (username.length() < 3
                 || username.length() > 25) {
-            errorList.add("Usernames must be between 3 and 20 characters long!");
+            errorList.add("Usernames must be between 3 and 25 characters long!");
         }
         if (password.length() < 8) {
             errorList.add("Passwords must be at least 8 characters long!");
