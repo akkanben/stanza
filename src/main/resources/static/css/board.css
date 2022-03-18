@@ -126,6 +126,7 @@ margin-left: 20px;
 
 .create-topic-link:hover {
    color: white;
+   background-color: #4e20a3
    transition: .5s;
    transform: translateX(-2px);
    box-shadow:
