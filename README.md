@@ -1,14 +1,31 @@
 # Stanza
 
-## Team
+Stanza is a classic internet forum build with Spring MVC.
 
-- Robb Alexander
-- Tony Regalado
-- Ben Mills
+## Features
 
-## Documents
+- User accounts
+- Admin accounts
+  - Thread & post deletion
+  - Add/remove admin rights
+- Profile pages
+  - Recent posts
+  - Avatar replace
+- Thread creation
+  - User posts
 
-- [Team Agreement](./team-agreement.md)
-- [Domain Modeling](https://excalidraw.com/#room=72eb9a1914b467559b45,idFzj8keopbbdioAJAelJg)
-- [User Stories](https://trello.com/b/Hz9rwLSb/401-project-name-pending)
-- [Software Requirements](./software-requirements.md)
+
+## Planning 
+
+- [Wire frames](./readme-images/stanza-wireframe.png)
+- [Model, view, controller](./readme-images/stanza-mvc.png)
+
+## Acknowledgements 
+
+Stanza was created by:
+
+- [Robb Alexander](https://github.com/RobbMAlexander)
+- [Tony Regalado](https://github.com/Edward-Regalado)
+- [Ben Mills](https://github.com/akkanben)
+
+Art assets for avatars, Stanza scroll, and sign in/up pages by [Flaticon](https://www.flaticon.com/)
