@@ -1,5 +1,7 @@
 # Stanza
 
+![stanza logo](./readme-images/stanza.png)
+
 Stanza is a classic internet forum build with Spring MVC.
 
 ## Features
@@ -14,6 +16,13 @@ Stanza is a classic internet forum build with Spring MVC.
 - Thread creation
   - User posts
 
+## Images
+
+![main page](./readme-images/main.png)
+
+![topic](./readme-images/topic.png)
+
+![post](./readme-images/post.png)
 
 ## Planning 
 
